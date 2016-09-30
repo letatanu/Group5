@@ -15,7 +15,7 @@
 	_Describe the software engineering methodology or methodologies you will use, justify your choice(s), and briefly discuss how you implemented them._
 
 ### System Overview
-	_A complete, high level system description goes here.  This section should provide a high level abstraction of the entire project, and prepare the reader for the system architecture discussion.  You should provide supporting diagrams and tables where appropriate._
+	_A complete, high level system description goes here.  This section should provide a high level abstraction of the entire project, and prepare the reader for the system architecture discussion. You should provide supporting diagrams and tables where appropriate._
 
 ### System Architecture
 * Subsystem, Component or Object 1
