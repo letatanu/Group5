@@ -6,7 +6,7 @@ package project.terminal;
  *
  * Created by Ashton on 10/16/2016.
  */
-public class StringEntryMenu extends TerminalMenu<String>{
+public class StringEntryMenu extends SingleLineEntryMenu<String> {
 
     //Default Settings
     private final static int DEFAULT_MIN_LENGTH = 1;

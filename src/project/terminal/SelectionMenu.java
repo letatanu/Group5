@@ -45,7 +45,7 @@ public class SelectionMenu extends IntEntryMenu {
      *
      * @param menu - TerminalMenu to be added to the options
      */
-    public void addTerminalMenu(TerminalMenu menu) {
+    public void addTerminalMenu(SingleLineEntryMenu menu) {
         selectionOptions.add(menu);
     }
 

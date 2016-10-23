@@ -5,7 +5,7 @@ package project.terminal;
  *
  * Created by Ashton on 10/16/2016.
  */
-public abstract class IntEntryMenu extends TerminalMenu<Integer> {
+public abstract class IntEntryMenu extends SingleLineEntryMenu<Integer> {
 
     //Constructor
     public IntEntryMenu(String name, String title, String body, String entryPrompt) {

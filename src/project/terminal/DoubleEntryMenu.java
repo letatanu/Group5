@@ -5,7 +5,7 @@ package project.terminal;
  *
  * Created by Ashton on 10/17/2016.
  */
-public abstract class DoubleEntryMenu extends TerminalMenu<Double>{
+public abstract class DoubleEntryMenu extends SingleLineEntryMenu<Double> {
 
     public DoubleEntryMenu(String name, String title, String body, String entryPrompt) {
         super(name, title, body, entryPrompt);
