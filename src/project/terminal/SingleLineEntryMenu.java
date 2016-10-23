@@ -106,48 +106,10 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
         return entryPrompt;
     }
 
-    /** Prints the title centered with accent characters at the width of the body */
-    protected void printTitle() {
-
-        System.out.print('\n');
-
-        int accent_length = (bodyWidth /2) - (getTitle().length()/2);
-        for(int i = 0; i < accent_length; i++)
-            System.out.print(titleAccentChar);
-
-        System.out.print(getTitle());
-
-        for(int i = 0; i < accent_length; i++)
-            System.out.print(titleAccentChar);
-    }
-
-    /**Prints the body wrapping at the defined body width. Wrapping will break at the most recent space
-     *     if available
-     */
-    protected void printBody() {
-        System.out.print('\n');
-
-        int last_break = -1;
-        int last_space = -1;
-        for(int i = 0; i < body.length(); i++) {
-            if (body.charAt(i) == ' ')
-                last_space = i;
-            if (i - last_break > bodyWidth) {
-                if (last_space == -1)
-                    System.out.println(body.substring(last_break + 1, i));
-                else {
-                    System.out.println(body.substring(last_break + 1, last_space));
-                    i = last_space;
-                }
-                last_break = i;
-            }
-        }
-    }
-
     /** Default menu print which prints the title, then the body */
     protected void printMenu() {
-        printTitle();
-        printBody();
+        printTitle(title, titleAccentChar, bodyWidth);
+        printBody(body, bodyWidth);
     }
 
     /**
