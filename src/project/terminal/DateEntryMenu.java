@@ -22,7 +22,7 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
             protected void printMenu() {}
         });
 
-        addMenu(new IntEntryMenu("", "", "", "Enter the day", 1, 31) {
+        addMenu(new IntEntryMenu("", "", "", "Enter the day or type 5 to return to previous menu", 1, 31) {
             @Override
             protected void printMenu() {
                 setExitValue(5);}
