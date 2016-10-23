@@ -45,7 +45,7 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     protected void resolveMenu(int menu_index) {
         switch (menu_index) {
             case 0:
-                entry.setMonth(((IntEntryMenu)getMenu(menu_index)).getEntry());
+                entry.setMonth(((IntEntryMenu) getMenu(menu_index)).getEntry());
                 break;
             case 1:
                 entry.setDay(((IntEntryMenu) getMenu(menu_index)).getEntry());

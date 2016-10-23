@@ -8,9 +8,9 @@ package project.terminal;
  */
 public class StringEntryMenu extends SingleLineEntryMenu<String> {
 
-    //Regular Expressions
-    public final static String ALPHABET_ONLY = "[a-zA-Z]";
-    public final static String INTEGER_ONLY = "[0-9]";
+    //Common Regular Expressions
+    public final static String ALPHABET_ONLY_REGEX = "[a-zA-Z]";
+    public final static String INTEGER_ONLY_REGEX = "[0-9]";
 
     //Default Settings
     private final static int DEFAULT_MIN_LENGTH = 1;
