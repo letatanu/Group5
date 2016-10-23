@@ -27,7 +27,8 @@ public class SelectionMenu extends IntEntryMenu {
 
         selectionOptions = new ArrayList<>();
 
-        setExplicitExit(EXIT_OPTION); //Sets default exit option
+        setExitValue(EXIT_OPTION); //Sets default exit option
+        setExplicitExit(true);
     }
 
     public SelectionMenu(String name, String title, String body, String exitPhrase) {
@@ -37,7 +38,8 @@ public class SelectionMenu extends IntEntryMenu {
 
         selectionOptions = new ArrayList<>();
 
-        setExplicitExit(EXIT_OPTION); //Sets default exit option
+        setExitValue(EXIT_OPTION); //Sets default exit option
+        setExplicitExit(true);
     }
 
     /**

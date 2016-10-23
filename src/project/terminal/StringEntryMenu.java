@@ -8,20 +8,23 @@ package project.terminal;
  */
 public class StringEntryMenu extends SingleLineEntryMenu<String> {
 
+    //Regular Expressions
+    public final static String ALPHABET_ONLY = "[a-zA-Z]";
+    public final static String INTEGER_ONLY = "[0-9]";
+
     //Default Settings
     private final static int DEFAULT_MIN_LENGTH = 1;
     private final static int DEFAULT_MAX_LENGTH = 500;
-    private final static boolean DEFAULT_ALPHABET_ONLY = false;
 
     //Settings
     private int minLength = DEFAULT_MIN_LENGTH;
     private int maxLength = DEFAULT_MAX_LENGTH;
-    private boolean alphabetOnly = DEFAULT_ALPHABET_ONLY;
+    private String regex = "";
 
     //Constructors
-    public StringEntryMenu(String name, String body, String entry_prompt, boolean alphabetOnly, int minLength, int maxLength) {
+    public StringEntryMenu(String name, String body, String entry_prompt, String regex, int minLength, int maxLength) {
         super(name, "", body, entry_prompt);
-        this.alphabetOnly = alphabetOnly;
+        this.regex = regex;
         this.minLength = minLength;
         this.maxLength = maxLength;
     }
@@ -32,19 +35,13 @@ public class StringEntryMenu extends SingleLineEntryMenu<String> {
         this.maxLength = maxLength;
     }
 
-    public StringEntryMenu(String name, String body, String entry_prompt, boolean alphabetOnly) {
+    public StringEntryMenu(String name, String body, String entry_prompt, String regex) {
         super(name, "", body, entry_prompt);
-        this.alphabetOnly = alphabetOnly;
+        this.regex = regex;
     }
 
     public StringEntryMenu(String name, String body, String entry_prompt) {
         super(name, "", body, entry_prompt);
-    }
-
-    /** Overrides the default printMenu to only print the body*/
-    @Override
-    protected void printMenu() {
-        printBody();
     }
 
     /**
@@ -74,7 +71,7 @@ public class StringEntryMenu extends SingleLineEntryMenu<String> {
         if (entry != null) {
             if (entry.length() >= minLength) {
                 if (entry.length() <= maxLength) {
-                    if (alphabetOnly && !entry.matches("[a-zA-Z]"))
+                    if (!entry.matches(regex))
                         response_code = -4;
                 } else
                     response_code = -3;
@@ -104,7 +101,7 @@ public class StringEntryMenu extends SingleLineEntryMenu<String> {
                     System.out.println("Invalid Entry: Maximum Length is " + maxLength);
                     break;
                 case -4:
-                    System.out.println("Invalid Entry: Only Alphabetical Characters");
+                    System.out.println("Invalid Entry!");
                     break;
                 default:
                     System.out.println("Unknown Error!");

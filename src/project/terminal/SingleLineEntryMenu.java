@@ -22,6 +22,7 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
     protected char titleAccentChar = DEFAULT_TITLE_ACCENT_CHAR; //Accents used to center the menu title
 
     //Exit Entry - Used to define a specific entry to break out of the menu
+    protected boolean explicitExit = false;
     protected T exitEntry = null;
 
     //Input Scanner
@@ -41,20 +42,25 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
     }
 
     /**
-     * Sets an explicit exit value, which requires the exit entry to be entered to leave the menu *
+     * Sets an exit value, which is used to return to the previous menu *
      *
      * @param exitEntry - Explicit exit Object of type T
      */
-    protected void setExplicitExit(T exitEntry) {
+    protected void setExitValue(T exitEntry) {
         this.exitEntry = exitEntry;
     }
 
     /** Returns whether the current entry value is equal to the exit value */
-    public boolean isExplicitExitEntry() {
+    public boolean isExitEntry() {
         if (exitEntry != null && entry != null) {
             return (exitEntry.equals(entry));
         } else
             return false;
+    }
+
+    /** If an exit value is set, explict exit requires that value to return */
+    protected void setExplicitExit(boolean explicitExit) {
+        this.explicitExit = explicitExit;
     }
 
     /**
@@ -81,7 +87,7 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
 
             } while(response_code != 0);
             processValidEntry();
-        } while (exitEntry != null && !exitEntry.equals(entry));
+        } while (exitEntry != null && !exitEntry.equals(entry) && explicitExit);
         return entry;
     }
 

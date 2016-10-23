@@ -11,13 +11,15 @@ import java.util.ArrayList;
 public abstract class MultiLineEntryMenu<T> extends TerminalMenu<T> {
 
     //Menu List - List of menus sequentially run then resolved
-    private ArrayList<TerminalMenu> menu_list;
+    private ArrayList<TerminalMenu> menuList;
 
     //Constructor
     public MultiLineEntryMenu(String name) {
         super(name);
 
-        menu_list = new ArrayList<>();
+        menuList = new ArrayList<>();
+
+        setupMenus();
     }
 
     /**
@@ -33,13 +35,13 @@ public abstract class MultiLineEntryMenu<T> extends TerminalMenu<T> {
         initEntry();
 
         int i;
-        for(i = 0; i < menu_list.size();) {
-            TerminalMenu menu = menu_list.get(i);
+        for(i = 0; i < menuList.size();) {
+            TerminalMenu menu = menuList.get(i);
 
             menu.runMenu();
 
             if (menu instanceof SingleLineEntryMenu) {
-                if (((SingleLineEntryMenu) menu).isExplicitExitEntry()) {
+                if (((SingleLineEntryMenu) menu).isExitEntry()) {
                     if (i > 0) {
                         i--;
                         continue;
@@ -55,9 +57,17 @@ public abstract class MultiLineEntryMenu<T> extends TerminalMenu<T> {
     }
 
     /** Adds a menu to the list of menus used in constructing the Object of Type T */
-    private void addMenu(TerminalMenu menu) {
-        menu_list.add(menu);
+    public void addMenu(TerminalMenu menu) {
+        menuList.add(menu);
     }
+
+    /** Returns the menu at menu index give */
+    public TerminalMenu getMenu(int menuIndex) {
+        return menuList.get(menuIndex);
+    }
+
+    /** Used to setup the menus used in the menu list */
+    protected abstract void setupMenus();
 
     /** Used to initialize the entry, in case it must be constructed */
     protected abstract void initEntry();
