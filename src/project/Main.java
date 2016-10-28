@@ -1,15 +1,13 @@
 package project;
 
-import project.terminal.DateEntryMenu;
+import project.database.profiles.ProfilesDatabase;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        DateEntryMenu dateEntry = new DateEntryMenu();
+        ProfilesDatabase p = new ProfilesDatabase();
 
-        dateEntry.runMenu();
-
-        System.out.println(dateEntry.getEntry().toString());
+        p.initialize();
     }
 }
