@@ -1,9 +1,14 @@
 package project.terminal;
 
+import project.database.profiles.profile.Date;
+import project.database.profiles.profile.adapted.AdaptedDate;
+
 /**
  * Created by Ashton on 10/23/2016.
  */
 public class DateEntryMenu extends MultiLineEntryMenu<Date> {
+
+    private AdaptedDate editableDate;
 
     //Constructors
     public DateEntryMenu(String name) {
@@ -37,7 +42,7 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     /** Initializes the Date */
     @Override
     protected void initEntry() {
-        entry = new Date();
+        editableDate = new AdaptedDate();
     }
 
     /** Resolves the Month, Day and year singleLineEntry menus */
@@ -45,16 +50,19 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     protected void resolveMenu(int menu_index) {
         switch (menu_index) {
             case 0:
-                entry.setMonth(((IntEntryMenu) getMenu(menu_index)).getEntry());
+                editableDate.setMonth(((IntEntryMenu) getMenu(menu_index)).getEntry());
                 break;
             case 1:
-                entry.setDay(((IntEntryMenu) getMenu(menu_index)).getEntry());
+                editableDate.setDay(((IntEntryMenu) getMenu(menu_index)).getEntry());
                 break;
             case 2:
-                entry.setYear(((IntEntryMenu) getMenu(menu_index)).getEntry());
+                editableDate.setYear(((IntEntryMenu) getMenu(menu_index)).getEntry());
                 break;
             default:
                 System.out.println("Invalid Menu Index!");
         }
     }
+
+    @Override
+    protected void finalizeEntry() { entry = editableDate.exportDate(); }
 }

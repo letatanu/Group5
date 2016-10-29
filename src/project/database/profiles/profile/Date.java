@@ -1,13 +1,12 @@
-package project.terminal;
+package project.database.profiles.profile;
 
 /**
  * Created by Ashton on 10/23/2016.
  */
-public class Date {
-
-    private int month;
-    private int day;
-    private int year;
+public final class Date {
+    private final int month;
+    private final int day;
+    private final int year;
 
     public Date() {
         month = 0;
@@ -25,24 +24,12 @@ public class Date {
         return month;
     }
 
-    public void setMonth(int month) {
-        this.month = month;
-    }
-
     public int getDay() {
         return day;
     }
 
-    public void setDay(int day) {
-        this.day = day;
-    }
-
     public int getYear() {
         return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 
     @Override

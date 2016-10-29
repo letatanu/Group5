@@ -48,15 +48,15 @@ public class ProfilesMetaData {
     }
 
     public boolean isMemeber(String id) {
-        return member_ids.contains(id);
+        return member_ids.contains(new AdaptedID(id));
     }
 
     public boolean isProvider(String id) {
-        return provider_ids.contains(id);
+        return provider_ids.contains(new AdaptedID(id));
     }
 
     public boolean isManager(String id) {
-        return manager_ids.contains(id);
+        return manager_ids.contains(new AdaptedID(id));
     }
 
     public boolean isProfile(String id) {
@@ -66,17 +66,17 @@ public class ProfilesMetaData {
     public void removeProfile(String id) {
         boolean removed = false;
         if (isMemeber(id)) {
-            member_ids.remove(id);
+            member_ids.remove(new AdaptedID(id));
             removed = true;
         }
         else {
             if (isProvider(id)) {
-                provider_ids.remove(id);
+                provider_ids.remove(new AdaptedID(id));
                 removed = true;
             }
             else {
                 if (isManager(id)) {
-                    manager_ids.remove(id);
+                    manager_ids.remove(new AdaptedID(id));
                     removed = true;
                 }
             }
