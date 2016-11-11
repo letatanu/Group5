@@ -1,4 +1,4 @@
-package project.database.profiles.profile.adapted;
+package project.database.profiles.profile.editable;
 
 import project.database.profiles.profile.MemberService;
 
@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlElement;
  * Created by Ashton on 10/28/2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AdaptedMemberService {
+public class EditableMemberService {
     @XmlAttribute(name="providerName")
     private String providerName;
 
@@ -19,14 +19,14 @@ public class AdaptedMemberService {
     private String serviceName;
 
     @XmlElement(name="date")
-    private AdaptedDate date;
+    private EditableDate date;
 
-    public AdaptedMemberService() {}
+    public EditableMemberService() {}
 
-    public AdaptedMemberService(MemberService memberService) {
+    public EditableMemberService(MemberService memberService) {
         providerName = memberService.getProvider();
         serviceName = memberService.getServiceName();
-        date = new AdaptedDate(memberService.getDate());
+        date = new EditableDate(memberService.getDate());
     }
 
     public MemberService exportMemberService() { return new MemberService(date.exportDate(), providerName, serviceName); }
@@ -39,7 +39,7 @@ public class AdaptedMemberService {
         this.serviceName = serviceName;
     }
 
-    public void setDate(AdaptedDate date) {
+    public void setDate(EditableDate date) {
         this.date = date;
     }
 }

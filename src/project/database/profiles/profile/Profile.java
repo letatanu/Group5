@@ -4,6 +4,8 @@ package project.database.profiles.profile;
  * Created by Ashton on 27/10/16.
  */
 public abstract class Profile {
+    public static final String DEFAULT_ID = "-1";
+
     private final String id;
     private final String name;
 

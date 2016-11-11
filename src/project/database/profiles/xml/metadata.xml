@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-
-<meta_data next_id="4">
-    <members>
-        <ID id="000000000"/>
-    </members>
-    <providers>
-        <ID id="000000001"/>
-    </providers>
-    <managers>
-        <ID id="000000002"/>
-    </managers>
+<meta_data next_seed="1">
+    <members/>
+    <providers/>
+    <managers/>
     <removed_ids>
-        <ID id="000000003"/>
     </removed_ids>
 </meta_data>

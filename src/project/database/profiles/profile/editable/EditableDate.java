@@ -1,4 +1,4 @@
-package project.database.profiles.profile.adapted;
+package project.database.profiles.profile.editable;
 
 import project.database.profiles.profile.Date;
 
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * Created by Ashton on 10/28/2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AdaptedDate {
+public class EditableDate {
     @XmlAttribute(name="month")
     private int month;
     @XmlAttribute(name="day")
@@ -18,13 +18,13 @@ public class AdaptedDate {
     @XmlAttribute(name="year")
     private int year;
 
-    public AdaptedDate() {
+    public EditableDate() {
         month = 0;
         day = 0;
         year = 0;
     }
 
-    public AdaptedDate(Date date) {
+    public EditableDate(Date date) {
         month = date.getMonth();
         day = date.getDay();
         year = date.getYear();

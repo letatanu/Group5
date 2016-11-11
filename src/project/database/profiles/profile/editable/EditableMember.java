@@ -1,4 +1,4 @@
-package project.database.profiles.profile.adapted;
+package project.database.profiles.profile.editable;
 
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.MemberService;
@@ -12,27 +12,33 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="member_profile")
-public class AdaptedMember extends AdaptedProfile {
+public class EditableMember extends EditableProfile {
 
     @XmlElement(name="address")
-    private AdaptedAddress address;
+    private EditableAddress address;
 
     @XmlElementWrapper(name="services_received")
     @XmlElement(name="service_received")
-    private List<AdaptedMemberService> servicesReceived;
+    private List<EditableMemberService> servicesReceived;
 
-    public AdaptedMember() {}
+    public EditableMember() {
+        servicesReceived = new ArrayList<>();
+    }
 
-    public AdaptedMember(Member member) {
-        address = new AdaptedAddress(member.getAddress());
+    public void setAddress(EditableAddress address) {
+        this.address = address;
+    }
+
+    public EditableMember(Member member) {
+        address = new EditableAddress(member.getAddress());
         servicesReceived = new ArrayList<>(member.getServicesSize());
         for(int i = 0; i < member.getServicesSize(); i++)
-            servicesReceived.add(new AdaptedMemberService(member.getServiceReceived(i)));
+            servicesReceived.add(new EditableMemberService(member.getServiceReceived(i)));
     }
 
     public Member exportMember() {
         ArrayList<MemberService> memberServices = new ArrayList<>(servicesReceived.size());
-        for(AdaptedMemberService service : servicesReceived)
+        for(EditableMemberService service : servicesReceived)
             memberServices.add(service.exportMemberService());
 
         return new Member(profileId, name, address.exportAddress(), memberServices);

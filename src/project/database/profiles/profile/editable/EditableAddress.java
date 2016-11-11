@@ -1,4 +1,4 @@
-package project.database.profiles.profile.adapted;
+package project.database.profiles.profile.editable;
 
 import project.database.profiles.profile.Address;
 
@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * Created by Ashton on 10/28/2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class AdaptedAddress {
+public class EditableAddress {
     @XmlAttribute(name="streetAddress")
     private String streetAddress;
 
@@ -23,9 +23,9 @@ public class AdaptedAddress {
     @XmlAttribute(name="zip")
     private String zip;
 
-    public AdaptedAddress() {}
+    public EditableAddress() {}
 
-    public AdaptedAddress(Address address) {
+    public EditableAddress(Address address) {
         streetAddress = address.getStreetAddress();
         city = address.getCity();
         state = address.getState();

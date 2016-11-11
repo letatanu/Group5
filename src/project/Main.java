@@ -9,5 +9,9 @@ public class Main {
         ProfilesDatabase p = new ProfilesDatabase();
 
         p.initialize();
+
+        p.test();
+
+        p.save();
     }
 }

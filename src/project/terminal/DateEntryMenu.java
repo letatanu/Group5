@@ -1,14 +1,14 @@
 package project.terminal;
 
 import project.database.profiles.profile.Date;
-import project.database.profiles.profile.adapted.AdaptedDate;
+import project.database.profiles.profile.editable.EditableDate;
 
 /**
  * Created by Ashton on 10/23/2016.
  */
 public class DateEntryMenu extends MultiLineEntryMenu<Date> {
 
-    private AdaptedDate editableDate;
+    private EditableDate editableDate;
 
     //Constructors
     public DateEntryMenu(String name) {
@@ -42,7 +42,7 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     /** Initializes the Date */
     @Override
     protected void initEntry() {
-        editableDate = new AdaptedDate();
+        editableDate = new EditableDate();
     }
 
     /** Resolves the Month, Day and year singleLineEntry menus */

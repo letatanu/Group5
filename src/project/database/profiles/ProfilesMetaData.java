@@ -1,6 +1,10 @@
 package project.database.profiles;
 
+import project.database.profiles.profile.*;
+
 import javax.xml.bind.annotation.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
 
@@ -11,98 +15,122 @@ import java.util.Vector;
 @XmlRootElement(name="meta_data")
 public class ProfilesMetaData {
 
-    private static final int ID_SIZE = 9;
-    private static final int MAX_ID = 999999999;
-
-    @XmlAttribute(name="next_id")
-    private int next_id;
+    @XmlAttribute(name="next_seed")
+    private int next_seed;
 
     @XmlElementWrapper(name="members")
     @XmlElement(name="ID")
-    private Vector<AdaptedID> member_ids;
+    private Vector<EditableID> memberIDs;
 
     @XmlElementWrapper(name="providers")
     @XmlElement(name="ID")
-    private Vector<AdaptedID> provider_ids;
+    private Vector<EditableID> providerIDs;
 
     @XmlElementWrapper(name="managers")
     @XmlElement(name="ID")
-    private Vector<AdaptedID> manager_ids;
+    private Vector<EditableID> managerIDs;
 
     @XmlElementWrapper(name="removed_ids")
     @XmlElement(name="ID")
-    private Stack<AdaptedID> removed_ids;
+    private Stack<EditableID> removedIDs;
 
-    private String getNextID() {
-        String id = null;
-        if (removed_ids.isEmpty()) {
-            if (next_id < MAX_ID) {
-                id = Integer.toString(next_id);
-                while(id.length() < ID_SIZE)
-                    id = '0' + id;
-            }
+    public int getNextSeed() { return next_seed; }
+
+    public void setNextSeed(int next_seed) { this.next_seed = next_seed; }
+
+    public boolean addProfile(Profile profile) {
+        if (profile != null && !isProfile(profile.getID())) {
+
+            if (profile instanceof Member)
+                memberIDs.add(new EditableID(profile.getID()));
+
+            return true;
         } else
-            id = removed_ids.pop().id;
-
-        return id;
+            return false;
     }
 
-    public boolean isMemeber(String id) {
-        return member_ids.contains(new AdaptedID(id));
+
+    public String popRemovedID() {
+        if (!removedIDs.isEmpty()) {
+            EditableID id = removedIDs.pop();
+
+            if (id != null)
+                return id.id;
+        }
+        return null;
     }
 
-    public boolean isProvider(String id) {
-        return provider_ids.contains(new AdaptedID(id));
-    }
-
-    public boolean isManager(String id) {
-        return manager_ids.contains(new AdaptedID(id));
-    }
-
-    public boolean isProfile(String id) {
-        return isMemeber(id) || isManager(id) || isProvider(id);
-    }
-
-    public void removeProfile(String id) {
+    public boolean removeProfile(String id) {
         boolean removed = false;
-        if (isMemeber(id)) {
-            member_ids.remove(new AdaptedID(id));
+        int index = getProfileIndex(id, memberIDs);
+        if (index != -1) {
+            memberIDs.remove(index);
             removed = true;
         }
         else {
-            if (isProvider(id)) {
-                provider_ids.remove(new AdaptedID(id));
+            index = getProfileIndex(id, providerIDs);
+            if (index != -1) {
+                providerIDs.remove(index);
                 removed = true;
             }
             else {
-                if (isManager(id)) {
-                    manager_ids.remove(new AdaptedID(id));
+                index = getProfileIndex(id, managerIDs);
+                if (index != -1) {
+                    managerIDs.remove(index);
                     removed = true;
                 }
             }
         }
 
         if (removed)
-            removed_ids.push(new AdaptedID(id));
+            removedIDs.push(new EditableID(id));
+
+        return removed;
+    }
+
+    private int getProfileIndex(String id, List<EditableID> IDs) {
+        int index = -1;
+
+        if (id != null && IDs != null) {
+            for(int i = 0; i < IDs.size(); i++) {
+                if (IDs.get(i).id.equals(id)) {
+                    index = i;
+                    break;
+                }
+            }
+        }
+
+        return index;
+    }
+
+    public boolean isMember(String id) {
+        return getProfileIndex(id, memberIDs) != -1;
+    }
+
+    public boolean isProvider(String id) {
+        return getProfileIndex(id, providerIDs) != -1;
+    }
+
+    public boolean isManager(String id) {
+        return getProfileIndex(id, managerIDs) != -1;
+    }
+
+    public boolean isProfile(String id) {
+        return isMember(id) || isManager(id) || isProvider(id);
     }
 
     @XmlAccessorType(XmlAccessType.FIELD)
     @XmlRootElement(name="ID")
-    private static class AdaptedID implements Comparable<AdaptedID> {
-
+    private static class EditableID {
         @XmlAttribute(name="id")
         public String id;
 
-        public AdaptedID() {
+        public EditableID() {
             id = null;
         }
 
-        public AdaptedID(String id) {
+        public EditableID(String id) {
             this.id = id;
-        }
-
-        public int compareTo(AdaptedID other_id) {
-            return id.compareTo(other_id.id);
         }
     }
 }
