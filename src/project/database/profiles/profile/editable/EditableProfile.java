@@ -3,6 +3,7 @@ package project.database.profiles.profile.editable;
 import project.database.profiles.profile.Profile;
 
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Created by ahunger on 10/25/2016.
@@ -15,7 +16,10 @@ public abstract class EditableProfile {
     @XmlAttribute(name="name")
     protected String name;
 
-    public EditableProfile() {}
+    public EditableProfile() {
+        profileId = Profile.DEFAULT_ID;
+        name = "";
+    }
 
     public EditableProfile(Profile profile) {
         profileId = profile.getID();
@@ -26,6 +30,7 @@ public abstract class EditableProfile {
         this.name = name;
     }
 
+    @XmlTransient
     public void setProfileID(String id) {
         profileId = id;
     }

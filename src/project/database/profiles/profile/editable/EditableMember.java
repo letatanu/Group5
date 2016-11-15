@@ -1,5 +1,6 @@
 package project.database.profiles.profile.editable;
 
+import project.database.profiles.profile.Address;
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.MemberService;
 
@@ -25,16 +26,20 @@ public class EditableMember extends EditableProfile {
         servicesReceived = new ArrayList<>();
     }
 
-    public void setAddress(EditableAddress address) {
-        this.address = address;
-    }
-
     public EditableMember(Member member) {
         address = new EditableAddress(member.getAddress());
         servicesReceived = new ArrayList<>(member.getServicesSize());
         for(int i = 0; i < member.getServicesSize(); i++)
             servicesReceived.add(new EditableMemberService(member.getServiceReceived(i)));
     }
+
+    public void setAddress(EditableAddress address) {
+        this.address = address;
+    }
+
+    public void setAddress(Address address) { this.address = new EditableAddress(address); }
+
+    public List<EditableMemberService> getServicesReceived() { return servicesReceived; }
 
     public Member exportMember() {
         ArrayList<MemberService> memberServices = new ArrayList<>(servicesReceived.size());

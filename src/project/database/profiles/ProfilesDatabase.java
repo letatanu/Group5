@@ -3,13 +3,13 @@ package project.database.profiles;
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.Profile;
 import project.database.profiles.profile.editable.EditableAddress;
+import project.database.profiles.profile.editable.EditableDate;
 import project.database.profiles.profile.editable.EditableMember;
+import project.database.profiles.profile.editable.EditableMemberService;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.crypto.dsig.spec.ExcC14NParameterSpec;
 import java.io.File;
 
 /**
@@ -85,7 +85,6 @@ public class ProfilesDatabase {
         Member member = null;
 
         if (editableMember != null && initialized && !isMember(editableMember.getProfileID())) {
-
             String id;
             if (editableMember.getProfileID().equals(Profile.DEFAULT_ID))
                 id = getNextID();
@@ -122,8 +121,9 @@ public class ProfilesDatabase {
         if (id != null && isMember(id)) {
             try {
                 File memberFile = new File(PROFILE_DATA_PATH + "members/" + id + ".xml");
-                Unmarshaller um = JAXBContext.newInstance(Member.class).createUnmarshaller();
-                member = (Member) um.unmarshal(memberFile);
+                Unmarshaller um = JAXBContext.newInstance(EditableMember.class).createUnmarshaller();
+                EditableMember editableMember = (EditableMember) um.unmarshal(memberFile);
+                member = editableMember.exportMember();
             } catch(Exception e) {
                 System.out.println("Error: Member failed to load");
                 e.printStackTrace();
@@ -177,11 +177,22 @@ public class ProfilesDatabase {
 
         editableMember.setAddress(editableAddress);
 
+        EditableMemberService service = new EditableMemberService();
+
+        service.setProviderName("Provider 1");
+        service.setServiceName("Service 1");
+
+        EditableDate editableDate = new EditableDate();
+
+        editableDate.setDay(9);
+        editableDate.setMonth(11);
+        editableDate.setYear(1996);
+
+        service.setDate(editableDate);
+
+        editableMember.getServicesReceived().add(service);
+
         Member member = addMember(editableMember);
-
-        System.out.println("Is Member: " + isMember(member.getID()));
-
-        removeProfile(member.getID());
 
         System.out.println("Is Member: " + isMember(member.getID()));
     }

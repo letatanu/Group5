@@ -71,8 +71,8 @@ public class StringEntryMenu extends SingleLineEntryMenu<String> {
         if (entry != null) {
             if (entry.length() >= minLength) {
                 if (entry.length() <= maxLength) {
-                    if (!entry.matches(regex))
-                        response_code = -4;
+                    //if (!entry.matches(regex))
+                    //    response_code = -4;
                 } else
                     response_code = -3;
             } else
