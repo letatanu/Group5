@@ -3,6 +3,7 @@ package project;
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;
 import project.terminal.BooleanEntryMenu;
+import project.terminal.databasemenus.entrymenus.IDEntryMenu;
 import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
 
 public final class Main {
@@ -11,9 +12,15 @@ public final class Main {
 
         BooleanEntryMenu booleanEntryMenu = new BooleanEntryMenu("Proceed Confirmation", "Do you confirm the following changes? \n\t a) First \n\t b) Second");
 
-        boolean b = booleanEntryMenu.runMenu();
+        //boolean b = booleanEntryMenu.runMenu();
 
-        System.out.println(b);
+        //System.out.println(b);
+
+        IDEntryMenu s = new IDEntryMenu("Operator Login", "Enter Operator ID: ");
+
+        String c = s.runMenu();
+
+        System.out.println(c);
 
         /*
         ProfilesDatabase p = new ProfilesDatabase();
