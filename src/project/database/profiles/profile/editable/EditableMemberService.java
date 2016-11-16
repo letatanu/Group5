@@ -15,7 +15,7 @@ public class EditableMemberService {
     @XmlAttribute(name="providerName")
     private String providerName;
 
-    @XmlAttribute(name="name")
+    @XmlAttribute(name="firstName")
     private String serviceName;
 
     @XmlElement(name="date")

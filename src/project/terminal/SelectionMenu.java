@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class SelectionMenu extends IntEntryMenu {
 
     //Default Settings
-    private static final int EXIT_OPTION = 0;
+    protected static final int EXIT_OPTION = 0;
     private static final String DEFAULT_EXIT_PHRASE = "Back";
 
     //Settings
     protected String exitPhrase = DEFAULT_EXIT_PHRASE;
 
     //List of TerminalMenus used as options to select from in the menu
-    private ArrayList<TerminalMenu> selectionOptions;
+    protected ArrayList<TerminalMenu> selectionOptions;
 
     //Constructors
     public SelectionMenu(String name, String title, String body) {
@@ -53,7 +53,7 @@ public class SelectionMenu extends IntEntryMenu {
 
     /**
      * Overrides default printMenu to additionally print a indented descending
-     *     list of the selectionOptions by name with the associated selection
+     *     list of the selectionOptions by firstName with the associated selection
      *     number to the left.
      */
     @Override

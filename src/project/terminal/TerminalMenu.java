@@ -19,7 +19,7 @@ public abstract class TerminalMenu<T> {
         this.name = name;
     }
 
-    /** Returns name **/
+    /** Returns firstName **/
     public String getName() {
         return name;
     }

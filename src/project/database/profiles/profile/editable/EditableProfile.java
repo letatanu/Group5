@@ -13,21 +13,30 @@ public abstract class EditableProfile {
     @XmlAttribute(name="profile_id")
     protected String profileId;
 
-    @XmlAttribute(name="name")
-    protected String name;
+    @XmlAttribute(name="first_name")
+    protected String firstName;
+
+    @XmlAttribute(name="last_name")
+    protected String lastName;
 
     public EditableProfile() {
         profileId = Profile.DEFAULT_ID;
-        name = "";
+        firstName = "";
+        lastName = "";
     }
 
     public EditableProfile(Profile profile) {
         profileId = profile.getID();
-        name = profile.getName();
+        firstName = profile.getName();
+        lastName = profile.getLastName();
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     @XmlTransient

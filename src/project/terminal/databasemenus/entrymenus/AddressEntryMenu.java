@@ -1,4 +1,4 @@
-package project.terminal.databasemenus;
+package project.terminal.databasemenus.entrymenus;
 
 
 import project.database.profiles.profile.Address;

@@ -46,6 +46,6 @@ public class EditableMember extends EditableProfile {
         for(EditableMemberService service : servicesReceived)
             memberServices.add(service.exportMemberService());
 
-        return new Member(profileId, name, address.exportAddress(), memberServices);
+        return new Member(profileId, firstName, address.exportAddress(), memberServices);
     }
 }

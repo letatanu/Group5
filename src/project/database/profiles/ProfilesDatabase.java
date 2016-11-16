@@ -166,7 +166,7 @@ public class ProfilesDatabase {
 
         editableMember.setProfileID("583928473");
 
-        editableMember.setName("Jim Bobby");
+        editableMember.setFirstName("Jim Bobby");
 
         EditableAddress editableAddress = new EditableAddress();
 

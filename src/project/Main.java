@@ -2,7 +2,7 @@ package project;
 
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;
-import project.terminal.databasemenus.MemberEntryMenu;
+import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
 
 public final class Main {
 
