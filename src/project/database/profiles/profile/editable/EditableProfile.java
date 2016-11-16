@@ -28,7 +28,6 @@ public abstract class EditableProfile {
     public EditableProfile(Profile profile) {
         profileId = profile.getID();
         firstName = profile.getName();
-        lastName = profile.getLastName();
     }
 
     public void setFirstName(String firstName) {
