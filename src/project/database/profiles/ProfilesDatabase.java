@@ -92,7 +92,7 @@ public class ProfilesDatabase {
                 id = editableMember.getProfileID();
 
             editableMember.setProfileID(id);
-            member = editableMember.exportMember();
+            member = editableMember.getImmutableType();
             metaData.addProfile(member);
             try {
                 File memberFile = new File(PROFILE_DATA_PATH + "members/" + id + ".xml");
@@ -123,7 +123,7 @@ public class ProfilesDatabase {
                 File memberFile = new File(PROFILE_DATA_PATH + "members/" + id + ".xml");
                 Unmarshaller um = JAXBContext.newInstance(EditableMember.class).createUnmarshaller();
                 EditableMember editableMember = (EditableMember) um.unmarshal(memberFile);
-                member = editableMember.exportMember();
+                member = editableMember.getImmutableType();
             } catch(Exception e) {
                 System.out.println("Error: Member failed to load");
                 e.printStackTrace();
@@ -166,7 +166,7 @@ public class ProfilesDatabase {
 
         editableMember.setProfileID("583928473");
 
-        editableMember.setFirstName("Jim Bobby");
+        editableMember.setName("Jim Bobby");
 
         EditableAddress editableAddress = new EditableAddress();
 

@@ -1,19 +1,21 @@
 package project;
 
 import project.database.profiles.ProfilesDatabase;
+import project.database.profiles.profile.Address;
 import project.database.profiles.profile.Member;
 import project.terminal.BooleanEntryMenu;
+import project.terminal.addressmenus.AddressEditMenu;
+import project.terminal.addressmenus.AddressEntryMenu;
+import project.terminal.databasemenus.entrymenus.ChangeConfirmationMenu;
 import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
 
 public final class Main {
 
     public static void main(String[] args) {
 
-        BooleanEntryMenu booleanEntryMenu = new BooleanEntryMenu("Proceed Confirmation", "Do you confirm the following changes? \n\t a) First \n\t b) Second");
+        AddressEntryMenu addressEntryMenu = new AddressEntryMenu();
 
-        boolean b = booleanEntryMenu.runMenu();
-
-        System.out.println(b);
+        Address address = addressEntryMenu.runMenu();
 
         /*
         ProfilesDatabase p = new ProfilesDatabase();

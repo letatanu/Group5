@@ -1,4 +1,4 @@
-package project.terminal.databasemenus.entrymenus;
+package project.terminal.addressmenus;
 
 
 import project.database.profiles.profile.Address;
@@ -10,6 +10,7 @@ import project.terminal.StringEntryMenu;
  * Created by ashton on 10/11/16.
  */
 public class AddressEntryMenu extends MultiLineEntryMenu<Address> {
+
     private EditableAddress editableAddress;
 
     public AddressEntryMenu() {
@@ -22,25 +23,13 @@ public class AddressEntryMenu extends MultiLineEntryMenu<Address> {
 
     @Override
     protected void setupMenus() {
-        addMenu(new StringEntryMenu("", "", "Street Address", 1, 25) {
-            @Override
-            public void printMenu() {}
-        });
+        addMenu(new StreetAddressEntryMenu());
 
-        addMenu(new StringEntryMenu("", "", "City", StringEntryMenu.ALPHABET_ONLY_REGEX, 1, 14) {
-            @Override
-            public void printMenu() {}
-        });
+        addMenu(new CityEntryMenu());
 
-        addMenu(new StringEntryMenu("", "The two letter State code.", "State", StringEntryMenu.ALPHABET_ONLY_REGEX, 2, 2) {
-            @Override
-            public void printMenu() {}
-        });
+        addMenu(new StateCodeEntryMenu());
 
-        addMenu(new StringEntryMenu("", "", "Zip Code", StringEntryMenu.INTEGER_ONLY_REGEX, 5, 5) {
-            @Override
-            public void printMenu() {}
-        });
+        addMenu(new ZipCodeEntryMenu());
     }
 
     @Override
@@ -50,7 +39,7 @@ public class AddressEntryMenu extends MultiLineEntryMenu<Address> {
 
     @Override
     protected void finalizeEntry() {
-        entry = editableAddress.exportAddress();
+        entry = editableAddress.getImmutableType();
     }
 
     @Override

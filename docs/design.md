@@ -19,14 +19,14 @@
 
 ### System Architecture
 * Subsystem, Component or Object 1
-	_Provide a detailed, high level description of the first subsystem, component or object of your system.  Your choice of terms should reflect the development methodology you chose in the design considerations section._ 
+	_Provide a detailed, high level description of the first subsystem, component or editableObject of your system.  Your choice of terms should reflect the development methodology you chose in the design considerations section._
 	_You should provide a detailed description of the interface. A high level description of the internal architecture is also appropriate here.  You may want to outline any important algorithms as well._
 	_Be sure to include supporting diagrams, such as UML diagrams, interaction diagrams and data flow diagrams, wherever appropriate._
-* Sub-subsystem, sub-component or sub-object 1-1
+* Sub-subsystem, sub-component or sub-editableObject 1-1
 	_Some of the larger subsystems, components or objects may need to be broken down further to complete the high-level picture. The same guidelines for content apply in this section as in its parent section._
 
 ### Detailed System Design
 * Subsystem, Component or Object 1
-	_Here, you will provide a highly detailed description of your subsystem, component or object.  You will describe your implementation in a fair amount of detail.  It is quite common to see pseudo code or even source listed in this section for portions of the object.  List the data structures you will use, helper functions that you will need, and any other facet of the implementation that helps the reader understand your implementation.  It is unlikely that you will need to introduce any new diagrams in this section._
-* Sub-subsystem, sub-component or sub-object 1-1
+	_Here, you will provide a highly detailed description of your subsystem, component or editableObject.  You will describe your implementation in a fair amount of detail.  It is quite common to see pseudo code or even source listed in this section for portions of the editableObject.  List the data structures you will use, helper functions that you will need, and any other facet of the implementation that helps the reader understand your implementation.  It is unlikely that you will need to introduce any new diagrams in this section._
+* Sub-subsystem, sub-component or sub-editableObject 1-1
 	_..._

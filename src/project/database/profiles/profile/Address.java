@@ -1,9 +1,11 @@
 package project.database.profiles.profile;
 
+import project.database.profiles.profile.editable.EditableAddress;
+
 /**
  * Created by Ashton on 10/28/2016.
  */
-public final class Address {
+public final class Address implements ImmutableType{
     private final String streetAddress;
     private final String city;
     private final String state;
@@ -31,4 +33,6 @@ public final class Address {
     public String getZip() {
         return zip;
     }
+
+    public EditableAddress getEditableType() { return new EditableAddress(this); }
 }

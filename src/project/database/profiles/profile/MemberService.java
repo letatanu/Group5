@@ -1,9 +1,11 @@
 package project.database.profiles.profile;
 
+import project.database.profiles.profile.editable.EditableMemberService;
+
 /**
  * Created by Ashton on 10/28/2016.
  */
-public final class MemberService {
+public final class MemberService implements ImmutableType {
     private final Date date;
     private final String provider;
     private final String serviceName;
@@ -25,4 +27,6 @@ public final class MemberService {
     public String getServiceName() {
         return serviceName;
     }
+
+    public EditableMemberService getEditableType() { return new EditableMemberService(this); }
 }

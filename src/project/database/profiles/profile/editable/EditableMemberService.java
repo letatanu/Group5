@@ -11,11 +11,11 @@ import javax.xml.bind.annotation.XmlElement;
  * Created by Ashton on 10/28/2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EditableMemberService {
+public class EditableMemberService implements EditableType{
     @XmlAttribute(name="providerName")
     private String providerName;
 
-    @XmlAttribute(name="firstName")
+    @XmlAttribute(name="name")
     private String serviceName;
 
     @XmlElement(name="date")
@@ -29,7 +29,7 @@ public class EditableMemberService {
         date = new EditableDate(memberService.getDate());
     }
 
-    public MemberService exportMemberService() { return new MemberService(date.exportDate(), providerName, serviceName); }
+    public MemberService getImmutableType() { return new MemberService(date.getImmutableType(), providerName, serviceName); }
 
     public void setProviderName(String providerName) {
         this.providerName = providerName;
