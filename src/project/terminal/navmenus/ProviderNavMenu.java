@@ -20,14 +20,14 @@ public class ProviderNavMenu extends OperatorNavMenu {
             }
         });
 
-        addTerminalMenu(new TerminalMenu("Add/Remove/Update Member") {
+        addTerminalMenu(new TerminalMenu("View Service Directory") {
             @Override
             public Object runMenu() {
                 return null;
             }
         });
 
-        addTerminalMenu(new TerminalMenu("Print Reports") {
+        addTerminalMenu(new TerminalMenu("Print Provider Report") {
             @Override
             public Object runMenu() {
                 return null;
