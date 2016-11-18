@@ -17,6 +17,12 @@ public final class Main {
 
         Address address = addressEntryMenu.runMenu();
 
+        AddressEditMenu addressEditMenu = new AddressEditMenu(address);
+
+        Address address1 = addressEditMenu.runMenu();
+
+        System.out.println(address.getCity() + " " + address1.getCity());
+
         /*
         ProfilesDatabase p = new ProfilesDatabase();
 

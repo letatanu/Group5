@@ -44,9 +44,7 @@ public class EditableAddress implements EditableType {
         this.state = state;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
+    public void setZip(String zip) { this.zip = zip; }
 
     public Address getImmutableType() { return new Address(streetAddress, city, state, zip); }
 }

@@ -43,19 +43,19 @@ public class AddressEntryMenu extends MultiLineEntryMenu<Address> {
     }
 
     @Override
-    protected void resolveMenu(int menu_index) {
-        switch (menu_index) {
+    protected void resolveMenu(int menuIndex) {
+        switch (menuIndex) {
             case 0:
-                editableAddress.setStreetAddress(((StringEntryMenu)getMenu(menu_index)).getEntry());
+                editableAddress.setStreetAddress(((StringEntryMenu)getMenu(menuIndex)).getEntry());
                 break;
             case 1:
-                editableAddress.setCity(((StringEntryMenu)getMenu(menu_index)).getEntry());
+                editableAddress.setCity(((StringEntryMenu)getMenu(menuIndex)).getEntry());
                 break;
             case 2:
-                editableAddress.setState(((StringEntryMenu)getMenu(menu_index)).getEntry());
+                editableAddress.setState(((StringEntryMenu)getMenu(menuIndex)).getEntry());
                 break;
             case 3:
-                editableAddress.setZip(((StringEntryMenu)getMenu(menu_index)).getEntry());
+                editableAddress.setZip(((StringEntryMenu)getMenu(menuIndex)).getEntry());
                 break;
             default:
                 System.out.println("Invalid Menu Index");

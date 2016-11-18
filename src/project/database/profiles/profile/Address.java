@@ -30,9 +30,7 @@ public final class Address implements ImmutableType{
         return state;
     }
 
-    public String getZip() {
-        return zip;
-    }
+    public String getZip() { return zip; }
 
     public EditableAddress getEditableType() { return new EditableAddress(this); }
 }

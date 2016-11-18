@@ -3,12 +3,28 @@ package project.terminal.addressmenus;
 import project.database.profiles.profile.Address;
 import project.database.profiles.profile.editable.EditableAddress;
 import project.terminal.EditMenu;
+import project.terminal.TerminalMenu;
 import project.terminal.databasemenus.entrymenus.ChangeConfirmationMenu;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddressEditMenu extends EditMenu<Address, EditableAddress> {
 
-    public AddressEditMenu(String name, String title, Address immutableAddress) {
-        super(name, title, immutableAddress);
+    public AddressEditMenu(Address immutableAddress) {
+        super("Edit Address", "Address", immutableAddress);
+    }
+
+    @Override
+    protected List<TerminalMenu> getEditSelectionMenus() {
+        ArrayList<TerminalMenu> editSelectionMenus = new ArrayList<>();
+
+        editSelectionMenus.add(new StreetAddressEntryMenu("Edit Street Address"));
+        editSelectionMenus.add(new StateCodeEntryMenu("Edit State"));
+        editSelectionMenus.add(new CityEntryMenu("Edit City"));
+        editSelectionMenus.add(new ZipCodeEntryMenu("Edit Zip Code"));
+
+        return editSelectionMenus;
     }
 
     @Override

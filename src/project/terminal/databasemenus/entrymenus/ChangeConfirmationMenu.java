@@ -19,6 +19,12 @@ public class ChangeConfirmationMenu extends BooleanEntryMenu {
         changeList = new HashMap<>();
     }
 
+    @Override
+    public void printMenu() {
+        setBody(createConfirmationBody());
+        super.printMenu();
+    }
+
     public boolean addChange(String valueName, String oldValue, String newValue) {
         if (!oldValue.equals(newValue)) {
             changeList.put(valueName, new ValueChange(oldValue, newValue));

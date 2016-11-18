@@ -3,6 +3,8 @@ package project.terminal;
 import project.database.profiles.profile.ImmutableType;
 import project.database.profiles.profile.editable.EditableType;
 
+import java.util.List;
+
 public abstract class EditMenu<I extends ImmutableType, E extends EditableType> extends TerminalMenu<I> {
 
     protected final I immutableType;
@@ -36,6 +38,8 @@ public abstract class EditMenu<I extends ImmutableType, E extends EditableType> 
         return editedImmutableType;
     }
 
+    protected abstract List<TerminalMenu> getEditSelectionMenus();
+
     protected abstract String getEditMenuBody(E editableType);
 
     protected abstract void setValue(E editableType, int valueIndex, Object value);
@@ -49,6 +53,10 @@ public abstract class EditMenu<I extends ImmutableType, E extends EditableType> 
         private EditSelectionMenu(String title, E editableType) {
             super("", title, "");
             this.editableType = editableType;
+
+            List<TerminalMenu> editSelectionMenus = getEditSelectionMenus();
+            for(TerminalMenu menu : editSelectionMenus)
+                addMenu(menu);
         }
 
         @Override
