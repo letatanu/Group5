@@ -15,7 +15,7 @@ public abstract class TerminalMenu<T> {
     protected T entry;
 
     //Constructor
-    public TerminalMenu(String name) {
+    protected TerminalMenu(String name) {
         this.name = name;
     }
 
@@ -34,7 +34,7 @@ public abstract class TerminalMenu<T> {
     public abstract T runMenu();
 
     /** Prints the title centered with accent characters at the width of the body */
-    protected static void printTitle(String title, char titleAccentChar, int bodyWidth) {
+    static void printTitle(String title, char titleAccentChar, int bodyWidth) {
 
         System.out.print('\n');
 
@@ -51,12 +51,26 @@ public abstract class TerminalMenu<T> {
     /**Prints the body wrapping at the defined body width. Wrapping will break at the most recent space
      *     if available
      */
-    protected static void printBody(String body, int bodyWidth) {
+    static void printBody(String body, int bodyWidth) {
         System.out.print('\n');
 
+        //Version 1.1
+        int i = 0;
+
+        StringBuilder s = new StringBuilder(body);
+
+        //Wrap every bodyWidth number of characters
+        while((i = s.indexOf(" ", i + bodyWidth)) != -1) {
+            s.replace(i, i + 1, "\n");
+        }
+
+        System.out.println(s.toString());
+
+        /*
         int last_break = -1;
         int last_space = -1;
-        for(int i = 0; i < body.length(); i++) {
+
+        for(int i = 0; i < len; i++) {
             if (body.charAt(i) == ' ')
                 last_space = i;
             if (i - last_break > bodyWidth) {
@@ -69,6 +83,6 @@ public abstract class TerminalMenu<T> {
                 }
                 last_break = i;
             }
-        }
+        }*/
     }
 }

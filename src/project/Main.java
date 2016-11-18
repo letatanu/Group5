@@ -1,26 +1,23 @@
 package project;
 
-import project.database.profiles.ProfilesDatabase;
-import project.database.profiles.profile.Member;
 import project.terminal.BooleanEntryMenu;
-import project.terminal.databasemenus.entrymenus.IDEntryMenu;
-import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
+import project.terminal.navmenus.IDEntryMenu;
+import project.terminal.navmenus.ManagerNavMenu;
+import project.terminal.navmenus.ProviderNavMenu;
 
 public final class Main {
 
     public static void main(String[] args) {
 
-        BooleanEntryMenu booleanEntryMenu = new BooleanEntryMenu("Proceed Confirmation", "Do you confirm the following changes? \n\t a) First \n\t b) Second");
+        /*BooleanEntryMenu booleanEntryMenu = new BooleanEntryMenu("Proceed Confirmation", "Do you confirm the following changes? \n\t a) First \n\t b) Second");
 
-        //boolean b = booleanEntryMenu.runMenu();
+        boolean b = booleanEntryMenu.runMenu();
 
-        //System.out.println(b);
+        System.out.println(b);*/
 
-        IDEntryMenu s = new IDEntryMenu("Operator Login", "Enter Operator ID: ");
+        ManagerNavMenu c = new ManagerNavMenu();
 
-        String c = s.runMenu();
-
-        System.out.println(c);
+        c.runMenu();
 
         /*
         ProfilesDatabase p = new ProfilesDatabase();

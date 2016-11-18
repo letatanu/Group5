@@ -1,4 +1,4 @@
-package project.terminal.databasemenus.entrymenus;
+package project.terminal.navmenus;
 
 import project.database.profiles.ProfilesDatabase;
 import project.terminal.SingleLineEntryMenu;
