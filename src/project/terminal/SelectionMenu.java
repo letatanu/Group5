@@ -16,7 +16,7 @@ public class SelectionMenu extends IntEntryMenu {
     private static final String DEFAULT_EXIT_PHRASE = "Back";
 
     //Settings
-    protected String exitPhrase = DEFAULT_EXIT_PHRASE;
+    private String exitPhrase = DEFAULT_EXIT_PHRASE;
 
     //List of TerminalMenus used as options to select from in the menu
     protected ArrayList<TerminalMenu> selectionOptions;
@@ -47,7 +47,7 @@ public class SelectionMenu extends IntEntryMenu {
      *
      * @param menu - TerminalMenu to be added to the options
      */
-    public void addTerminalMenu(SingleLineEntryMenu menu) {
+    protected void addTerminalMenu(TerminalMenu menu) {
         selectionOptions.add(menu);
     }
 
