@@ -7,7 +7,7 @@ import project.terminal.TerminalMenu;
  * Created by Anders on 11/17/2016.
  * Menu accessed by a Provider immediately after logging in.
  */
-public class ProviderNavMenu extends SelectionMenu {
+public class ProviderNavMenu extends OperatorNavMenu {
 
     public ProviderNavMenu() {
         super("ProviderNavMenu", "Provider Navigation Menu", "\tHello, select a menu choice\n");

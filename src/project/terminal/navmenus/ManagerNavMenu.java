@@ -7,7 +7,7 @@ import project.terminal.TerminalMenu;
  * Created by Anders on 11/17/2016.
  * Menu accessed by a Manager immediately after logging in.
  */
-public class ManagerNavMenu extends SelectionMenu {
+public class ManagerNavMenu extends OperatorNavMenu {
     public ManagerNavMenu() {
         super("Manager Menu", "Manager Navagaiton Menu", "\tWelcome to the ChocAn System. Please input your selection.");
 
