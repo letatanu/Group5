@@ -9,6 +9,8 @@ import project.terminal.databasemenus.entrymenus.MemberIDEntryMenu;
 /**
  * Created by Anders on 11/17/2016.
  * Menu accessed by a Provider immediately after logging in.
+ * Allows providers to make a selection of the actions
+ * available to them. 
  */
 public class ProviderNavMenu extends OperatorNavMenu {
 
