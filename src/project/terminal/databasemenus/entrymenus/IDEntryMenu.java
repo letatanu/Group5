@@ -1,4 +1,4 @@
-package project.terminal.navmenus;
+package project.terminal.databasemenus.entrymenus;
 
 import project.database.profiles.ProfilesDatabase;
 import project.terminal.SingleLineEntryMenu;
@@ -10,11 +10,11 @@ import project.terminal.StringEntryMenu;
  * This menu is to be used by operators when logging into the ChocAn DPS.
  */
 
-public class IDEntryMenu extends StringEntryMenu {
-    private ProfilesDatabase profile;
+class IDEntryMenu extends StringEntryMenu {
+    protected ProfilesDatabase profile;
 
-    public IDEntryMenu(String body, String entry_prompt, ProfilesDatabase profile) {
-        super("ID Entry Menu", body, entry_prompt, 9, 9);
+    IDEntryMenu(String name, String body, String entry_prompt, ProfilesDatabase profile) {
+        super(name, body, entry_prompt, 9, 9);
     }
 
     @Override

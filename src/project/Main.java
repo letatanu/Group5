@@ -1,8 +1,7 @@
 package project;
 
-import project.terminal.BooleanEntryMenu;
-import project.terminal.navmenus.IDEntryMenu;
-import project.terminal.navmenus.ManagerNavMenu;
+import project.database.profiles.ProfilesDatabase;
+import project.terminal.databasemenus.entrymenus.MemberIDEntryMenu;
 import project.terminal.navmenus.ProviderNavMenu;
 
 public final class Main {
@@ -15,7 +14,9 @@ public final class Main {
 
         System.out.println(b);*/
 
-        ManagerNavMenu c = new ManagerNavMenu();
+        ProfilesDatabase p = new ProfilesDatabase();
+
+        ProviderNavMenu c = new ProviderNavMenu(p);
 
         c.runMenu();
 

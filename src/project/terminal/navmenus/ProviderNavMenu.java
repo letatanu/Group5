@@ -1,7 +1,10 @@
 package project.terminal.navmenus;
 
-import project.terminal.SelectionMenu;
+import project.database.profiles.ProfilesDatabase;
+import project.database.profiles.profile.Member;
+import project.terminal.StringEntryMenu;
 import project.terminal.TerminalMenu;
+import project.terminal.databasemenus.entrymenus.MemberIDEntryMenu;
 
 /**
  * Created by Anders on 11/17/2016.
@@ -9,16 +12,11 @@ import project.terminal.TerminalMenu;
  */
 public class ProviderNavMenu extends OperatorNavMenu {
 
-    public ProviderNavMenu() {
+    public ProviderNavMenu(ProfilesDatabase profile) {
         super("ProviderNavMenu", "Provider Navigation Menu", "\tHello, select a menu choice\n");
 
         //Blank selections waiting for databasemenus to be created.
-        addTerminalMenu(new TerminalMenu("Provide to Member") {
-            @Override
-            public Object runMenu() {
-                return null;
-            }
-        });
+        addTerminalMenu(new MemberIDEntryMenu(profile));
 
         addTerminalMenu(new TerminalMenu("View Service Directory") {
             @Override
