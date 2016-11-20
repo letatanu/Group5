@@ -1,4 +1,4 @@
-package project.terminal.databasemenus.entrymenus;
+package project.terminal;
 
 import project.terminal.BooleanEntryMenu;
 

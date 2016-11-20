@@ -4,7 +4,7 @@ import project.database.profiles.profile.Address;
 import project.database.profiles.profile.editable.EditableAddress;
 import project.terminal.EditMenu;
 import project.terminal.TerminalMenu;
-import project.terminal.databasemenus.entrymenus.ChangeConfirmationMenu;
+import project.terminal.ChangeConfirmationMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +28,7 @@ public class AddressEditMenu extends EditMenu<Address, EditableAddress> {
     }
 
     @Override
-    protected String getEditMenuBody(EditableAddress editableAddress) {
+    public String getEditMenuBody(EditableAddress editableAddress) {
         String body = "";
 
         Address a = editableAddress.getImmutableType();

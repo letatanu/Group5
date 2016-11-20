@@ -13,8 +13,8 @@ public abstract class EditMenu<I extends ImmutableType, E extends EditableType> 
 
     public EditMenu(String name, String title, I immutableType) {
         super(name);
-        this.immutableType = immutableType;
         this.title = title;
+        this.immutableType = immutableType;
     }
 
     @SuppressWarnings("unchecked cast")
@@ -26,8 +26,9 @@ public abstract class EditMenu<I extends ImmutableType, E extends EditableType> 
             EditSelectionMenu editSelectionMenu = new EditSelectionMenu(title, editableType);
             editSelectionMenu.runMenu();
 
-            if (confirmChanges(editableType))
+            if (confirmChanges(editableType)) {
                 editedImmutableType = (I) editableType.getImmutableType();
+            }
 
         } catch (ClassCastException e) {
             System.out.println("Edit Menus Must use corresponding Immutable and Editable Types");
@@ -38,9 +39,11 @@ public abstract class EditMenu<I extends ImmutableType, E extends EditableType> 
         return editedImmutableType;
     }
 
+    protected void onConfirmation(I editedImmutableType) {}
+
     protected abstract List<TerminalMenu> getEditSelectionMenus();
 
-    protected abstract String getEditMenuBody(E editableType);
+    public abstract String getEditMenuBody(E editableType);
 
     protected abstract void setValue(E editableType, int valueIndex, Object value);
 
@@ -58,6 +61,9 @@ public abstract class EditMenu<I extends ImmutableType, E extends EditableType> 
             for(TerminalMenu menu : editSelectionMenus)
                 addMenu(menu);
         }
+
+        @Override
+        protected void printBody() { System.out.println('\n' + getBody() + '\n'); }
 
         @Override
         public void printMenu() {

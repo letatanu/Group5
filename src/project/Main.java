@@ -1,13 +1,8 @@
 package project;
 
-import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Address;
-import project.database.profiles.profile.Member;
-import project.terminal.BooleanEntryMenu;
 import project.terminal.addressmenus.AddressEditMenu;
 import project.terminal.addressmenus.AddressEntryMenu;
-import project.terminal.databasemenus.entrymenus.ChangeConfirmationMenu;
-import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
 
 public final class Main {
 

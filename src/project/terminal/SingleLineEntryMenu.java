@@ -112,10 +112,18 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
     /** Sets the body width */
     protected void setBodyWidth(int bodyWidth) { this.bodyWidth = bodyWidth; }
 
+    protected void printTitle() {
+        TerminalMenu.printTitle(title, titleAccentChar, bodyWidth);
+    }
+
+    protected void printBody() {
+        TerminalMenu.printBody(body, bodyWidth);
+    }
+
     /** Default menu print which prints the title, then the body */
     protected void printMenu() {
-        printTitle(title, titleAccentChar, bodyWidth);
-        printBody(body, bodyWidth);
+        printTitle();
+        printBody();
     }
 
     /**

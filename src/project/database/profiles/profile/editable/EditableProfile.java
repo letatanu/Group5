@@ -26,8 +26,8 @@ public abstract class EditableProfile {
         name = profile.getName();
     }
 
-    public void setName(String firstName) {
-        this.name = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @XmlTransient
