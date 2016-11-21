@@ -84,14 +84,14 @@ public class ProfilesDatabase {
     public Member addMember(EditableMember editableMember) {
         Member member = null;
 
-        if (editableMember != null && initialized && !isMember(editableMember.getProfileID())) {
+        if (editableMember != null && initialized && !isMember(editableMember.getID())) {
             String id;
-            if (editableMember.getProfileID().equals(Profile.DEFAULT_ID))
+            if (editableMember.getID().equals(Profile.DEFAULT_ID))
                 id = getNextID();
             else
-                id = editableMember.getProfileID();
+                id = editableMember.getID();
 
-            editableMember.setProfileID(id);
+            editableMember.setID(id);
             member = editableMember.getImmutableType();
             metaData.addProfile(member);
             try {
@@ -110,9 +110,27 @@ public class ProfilesDatabase {
         return member;
     }
 
+    public boolean updateMember(Member editableMember) {
+        if (editableMember != null && initialized && isMember(editableMember.getID())) {
+            try {
+                File memberFile = new File(PROFILE_DATA_PATH + "members/" + editableMember.getID() + ".xml");
+                Marshaller m = JAXBContext.newInstance(EditableMember.class).createMarshaller();
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                m.marshal(editableMember.getEditableType(), memberFile);
+                m.marshal(editableMember.getEditableType(), System.out);
+            } catch (Exception e) {
+                System.out.println("Error: Member failed to save!");
+                e.printStackTrace();
+            }
+            return true;
+        } else
+            return false;
+    }
+
     public void removeProfile(String id) {
         if (id != null && isProfile(id))
             metaData.removeProfile(id);
+
     }
 
     public Member getMember(String id) {
@@ -164,7 +182,7 @@ public class ProfilesDatabase {
     public void test() {
         EditableMember editableMember = new EditableMember();
 
-        editableMember.setProfileID("583928473");
+        editableMember.setID("583928473");
 
         editableMember.setName("Jim Bobby");
 

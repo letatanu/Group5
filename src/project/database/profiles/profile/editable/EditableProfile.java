@@ -11,18 +11,18 @@ import javax.xml.bind.annotation.XmlTransient;
 
 public abstract class EditableProfile {
     @XmlAttribute(name="profile_id")
-    protected String profileId;
+    protected String id;
 
     @XmlAttribute(name="name")
     protected String name;
 
     public EditableProfile() {
-        profileId = Profile.DEFAULT_ID;
+        id = Profile.DEFAULT_ID;
         name = "";
     }
 
     public EditableProfile(Profile profile) {
-        profileId = profile.getID();
+        id = profile.getID();
         name = profile.getName();
     }
 
@@ -31,9 +31,9 @@ public abstract class EditableProfile {
     }
 
     @XmlTransient
-    public void setProfileID(String id) {
-        profileId = id;
+    public void setID(String id) {
+        this.id = id;
     }
 
-    public String getProfileID() { return profileId; }
+    public String getID() { return id; }
  }

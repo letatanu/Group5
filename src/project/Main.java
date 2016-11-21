@@ -1,13 +1,15 @@
 package project;
 
-import project.database.profiles.profile.Address;
-import project.terminal.addressmenus.AddressEditMenu;
-import project.terminal.addressmenus.AddressEntryMenu;
+import project.database.profiles.ProfilesDatabase;
+import project.database.profiles.profile.Member;
+import project.terminal.databasemenus.MemberEditMenu;
+import project.terminal.databasemenus.MemberEntryMenu;
 
 public final class Main {
 
     public static void main(String[] args) {
 
+        /*
         AddressEntryMenu addressEntryMenu = new AddressEntryMenu();
 
         Address address = addressEntryMenu.runMenu();
@@ -18,7 +20,8 @@ public final class Main {
 
         System.out.println(address.getCity() + " " + address1.getCity());
 
-        /*
+       */
+
         ProfilesDatabase p = new ProfilesDatabase();
 
         p.initialize();
@@ -29,9 +32,14 @@ public final class Main {
 
         Member m_test = p.getMember(m.getID());
 
-        System.out.println(m.getName() + " " + m_test.getName());
+        MemberEditMenu memberEditMenu = new MemberEditMenu(p, m_test);
+
+        Member m_edited = memberEditMenu.runMenu();
+
+        memberEditMenu = new MemberEditMenu(p, m_edited);
+
+        memberEditMenu.runMenu();
 
         p.save();
-        */
     }
 }

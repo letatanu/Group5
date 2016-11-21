@@ -1,4 +1,4 @@
-package project.terminal.databasemenus.entrymenus;
+package project.terminal.databasemenus;
 
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;

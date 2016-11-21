@@ -27,6 +27,7 @@ public class EditableMember extends EditableProfile implements EditableType {
     }
 
     public EditableMember(Member member) {
+        super(member);
         address = new EditableAddress(member.getAddress());
         servicesReceived = new ArrayList<>(member.getServicesSize());
         for(int i = 0; i < member.getServicesSize(); i++)
@@ -46,6 +47,6 @@ public class EditableMember extends EditableProfile implements EditableType {
         for(EditableMemberService service : servicesReceived)
             memberServices.add(service.getImmutableType());
 
-        return new Member(profileId, name, address.getImmutableType(), memberServices);
+        return new Member(id, name, address.getImmutableType(), memberServices);
     }
 }

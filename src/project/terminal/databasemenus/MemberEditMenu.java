@@ -1,4 +1,4 @@
-package project.terminal.databasemenus.editmenus;
+package project.terminal.databasemenus;
 
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Address;
@@ -8,7 +8,6 @@ import project.terminal.ChangeConfirmationMenu;
 import project.terminal.EditMenu;
 import project.terminal.TerminalMenu;
 import project.terminal.addressmenus.AddressEditMenu;
-import project.terminal.databasemenus.entrymenus.ProfileNameEntryMenu;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,8 +91,5 @@ public class MemberEditMenu extends EditMenu<Member, EditableMember> {
     }
 
     @Override
-    protected void onConfirmation(Member editedMember) {
-        profilesDatabase.removeProfile(editedMember.getID());
-        profilesDatabase.addMember(editedMember.getEditableType());
-    }
+    protected void onConfirmation(Member editedMember) { profilesDatabase.updateMember(editedMember); }
 }

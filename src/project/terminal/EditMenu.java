@@ -28,6 +28,7 @@ public abstract class EditMenu<I extends ImmutableType, E extends EditableType> 
 
             if (confirmChanges(editableType)) {
                 editedImmutableType = (I) editableType.getImmutableType();
+                onConfirmation(editedImmutableType);
             }
 
         } catch (ClassCastException e) {
