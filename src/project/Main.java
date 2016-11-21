@@ -4,6 +4,7 @@ import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;
 import project.terminal.databasemenus.MemberEditMenu;
 import project.terminal.databasemenus.MemberEntryMenu;
+import project.terminal.databasemenus.MemberRemovalMenu;
 
 public final class Main {
 
@@ -30,15 +31,17 @@ public final class Main {
 
         Member m = menu.runMenu();
 
-        Member m_test = p.getMember(m.getID());
+        //MemberEditMenu memberEditMenu = new MemberEditMenu(p, m);
 
-        MemberEditMenu memberEditMenu = new MemberEditMenu(p, m_test);
+        //memberEditMenu.runMenu();
 
-        Member m_edited = memberEditMenu.runMenu();
+        //menu = new MemberEntryMenu("",p);
 
-        memberEditMenu = new MemberEditMenu(p, m_edited);
+        //menu.runMenu();
 
-        memberEditMenu.runMenu();
+        MemberRemovalMenu memberRemovalMenu = new MemberRemovalMenu(p);
+
+        memberRemovalMenu.runMenu();
 
         p.save();
     }
