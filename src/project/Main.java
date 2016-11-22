@@ -39,10 +39,6 @@ public final class Main {
 
         menu.runMenu();
 
-        ProfileRemovalMenu profileRemovalMenu = new ProfileRemovalMenu(p);
-
-        profileRemovalMenu.runMenu();
-
         p.save();
 
     }
