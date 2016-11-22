@@ -41,16 +41,16 @@ public class ProfileIDEntryMenu extends StringEntryMenu {
 
         if (response == 0) {
             switch (FILTER_FLAG) {
-                case 1:
+                case MEMBER_ONLY_FLAG:
                     response = (profilesDatabase.isMember(entry) ? 0 : -6);
                     break;
-                case 2:
+                case PROVIDER_ONLY_FLAG:
                     response = (profilesDatabase.isProvider(entry) ? 0 : -7);
                     break;
-                case 3:
+                case MANAGER_ONLY_FLAG:
                     response = (profilesDatabase.isManager(entry) ? 0 : -8);
                     break;
-                case 4:
+                case OPERATOR_ONLY_FLAG:
                     response = ((profilesDatabase.isManager(entry) || profilesDatabase.isProvider(entry)) ? 0 : -9);
                     break;
                 default:

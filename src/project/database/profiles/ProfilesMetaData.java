@@ -43,6 +43,12 @@ public class ProfilesMetaData {
 
             if (profile instanceof Member)
                 memberIDs.add(new EditableID(profile.getID()));
+            else {
+                if (profile instanceof Provider)
+                    providerIDs.add(new EditableID(profile.getID()));
+                else
+                    managerIDs.add(new EditableID(profile.getID()));
+            }
 
             return true;
         } else

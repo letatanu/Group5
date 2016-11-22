@@ -2,9 +2,9 @@ package project;
 
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;
-import project.terminal.databasemenus.MemberEditMenu;
-import project.terminal.databasemenus.MemberEntryMenu;
-import project.terminal.databasemenus.MemberRemovalMenu;
+import project.terminal.databasemenus.ProfileEditMenu;
+import project.terminal.databasemenus.ProfileRemovalMenu;
+import project.terminal.databasemenus.ProfileEntryMenu;
 
 public final class Main {
 
@@ -21,28 +21,29 @@ public final class Main {
 
         System.out.println(address.getCity() + " " + address1.getCity());
 
-       */
+        */
 
         ProfilesDatabase p = new ProfilesDatabase();
 
         p.initialize();
 
-        MemberEntryMenu menu = new MemberEntryMenu("",p);
+        ProfileEntryMenu menu = new ProfileEntryMenu("", p, ProfileEntryMenu.MEMBER_FLAG);
 
-        Member m = menu.runMenu();
+        Member m = (Member)menu.runMenu();
 
-        //MemberEditMenu memberEditMenu = new MemberEditMenu(p, m);
+        ProfileEditMenu profileEditMenu = new ProfileEditMenu(p, m);
 
-        //memberEditMenu.runMenu();
+        profileEditMenu.runMenu();
 
-        //menu = new MemberEntryMenu("",p);
+        menu = new ProfileEntryMenu("", p, ProfileEntryMenu.PROVIDER_FLAG);
 
-        //menu.runMenu();
+        menu.runMenu();
 
-        MemberRemovalMenu memberRemovalMenu = new MemberRemovalMenu(p);
+        ProfileRemovalMenu profileRemovalMenu = new ProfileRemovalMenu(p);
 
-        memberRemovalMenu.runMenu();
+        profileRemovalMenu.runMenu();
 
         p.save();
+
     }
 }

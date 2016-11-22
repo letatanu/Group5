@@ -2,10 +2,8 @@ package project.database.profiles;
 
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.Profile;
-import project.database.profiles.profile.editable.EditableAddress;
-import project.database.profiles.profile.editable.EditableDate;
-import project.database.profiles.profile.editable.EditableMember;
-import project.database.profiles.profile.editable.EditableMemberService;
+import project.database.profiles.profile.Provider;
+import project.database.profiles.profile.editable.*;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
@@ -110,16 +108,52 @@ public class ProfilesDatabase {
         return member;
     }
 
-    public boolean updateMember(Member editableMember) {
-        if (editableMember != null && initialized && isMember(editableMember.getID())) {
+    public Provider addProvider(EditableProvider editableProvider) {
+        Provider provider = null;
+
+        if (editableProvider != null && initialized && !isProvider(editableProvider.getID())) {
+            String id;
+            if (editableProvider.getID().equals(Profile.DEFAULT_ID))
+                id = getNextID();
+            else
+                id = editableProvider.getID();
+
+            editableProvider.setID(id);
+            provider = editableProvider.getImmutableType();
+            metaData.addProfile(provider);
             try {
-                File memberFile = new File(PROFILE_DATA_PATH + "members/" + editableMember.getID() + ".xml");
-                Marshaller m = JAXBContext.newInstance(EditableMember.class).createMarshaller();
+                File providerFile = new File(PROFILE_DATA_PATH + "providers/" + id + ".xml");
+                Marshaller m = JAXBContext.newInstance(EditableProvider.class).createMarshaller();
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-                m.marshal(editableMember.getEditableType(), memberFile);
-                m.marshal(editableMember.getEditableType(), System.out);
+                m.marshal(editableProvider, providerFile);
+                m.marshal(editableProvider, System.out);
             } catch (Exception e) {
-                System.out.println("Error: Member failed to save!");
+                System.out.println("Error: Provider failed to save!");
+                e.printStackTrace();
+            }
+
+        }
+
+        return provider;
+    }
+
+    public boolean updateProfile(Profile editedProfile) {
+        if (editedProfile != null && initialized && isProfile(editedProfile.getID())) {
+            try {
+                File profileFile;
+                Marshaller m;
+                if (isMember(editedProfile.getID())) {
+                    profileFile = new File(PROFILE_DATA_PATH + "members/" + editedProfile.getID() + ".xml");
+                    m = JAXBContext.newInstance(EditableMember.class).createMarshaller();
+                } else {
+                    profileFile = new File(PROFILE_DATA_PATH + "provider/" + editedProfile.getID() + ".xml");
+                    m = JAXBContext.newInstance(EditableProvider.class).createMarshaller();
+                }
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                m.marshal(editedProfile.getEditableType(), profileFile);
+                m.marshal(editedProfile.getEditableType(), System.out);
+            } catch (Exception e) {
+                System.out.println("Error: Member failed to update!");
                 e.printStackTrace();
             }
             return true;
@@ -133,12 +167,12 @@ public class ProfilesDatabase {
 
     }
 
-    public Member getMember(String id) {
+    public Member getMember(String memberID) {
         Member member = null;
 
-        if (id != null && isMember(id)) {
+        if (memberID != null && isMember(memberID)) {
             try {
-                File memberFile = new File(PROFILE_DATA_PATH + "members/" + id + ".xml");
+                File memberFile = new File(PROFILE_DATA_PATH + "members/" + memberID + ".xml");
                 Unmarshaller um = JAXBContext.newInstance(EditableMember.class).createUnmarshaller();
                 EditableMember editableMember = (EditableMember) um.unmarshal(memberFile);
                 member = editableMember.getImmutableType();
@@ -151,23 +185,41 @@ public class ProfilesDatabase {
         return member;
     }
 
-    public boolean isMember(String id) {
+    public Provider getProvider(String providerID) {
+        Provider provider = null;
+
+        if (providerID != null && isProvider(providerID)) {
+            try {
+                File providerFile = new File(PROFILE_DATA_PATH + "provider/" + providerID + ".xml");
+                Unmarshaller um = JAXBContext.newInstance(EditableProvider.class).createUnmarshaller();
+                EditableProvider editableProvider = (EditableProvider) um.unmarshal(providerFile);
+                provider = editableProvider.getImmutableType();
+            } catch(Exception e) {
+                System.out.println("Error: Member failed to load");
+                e.printStackTrace();
+            }
+        }
+
+        return provider;
+    }
+
+    public boolean isMember(String memberID) {
         if (initialized)
-            return metaData.isMember(id);
+            return metaData.isMember(memberID);
         else
             return false;
     }
 
-    public boolean isProvider(String id) {
+    public boolean isProvider(String providerID) {
         if (initialized)
-            return metaData.isProvider(id);
+            return metaData.isProvider(providerID);
         else
             return false;
     }
 
-    public boolean isManager(String id) {
+    public boolean isManager(String managerID) {
         if (initialized)
-            return metaData.isManager(id);
+            return metaData.isManager(managerID);
         else
             return false;
     }
@@ -177,41 +229,5 @@ public class ProfilesDatabase {
             return isMember(id) || isManager(id) || isProvider(id);
         else
             return false;
-    }
-
-    public void test() {
-        EditableMember editableMember = new EditableMember();
-
-        editableMember.setID("583928473");
-
-        editableMember.setName("Jim Bobby");
-
-        EditableAddress editableAddress = new EditableAddress();
-
-        editableAddress.setCity("Hillsboro");
-        editableAddress.setState("OR");
-        editableAddress.setStreetAddress("225 NE Hyde Circle");
-        editableAddress.setZip("97124");
-
-        editableMember.setAddress(editableAddress);
-
-        EditableMemberService service = new EditableMemberService();
-
-        service.setProviderName("Provider 1");
-        service.setServiceName("Service 1");
-
-        EditableDate editableDate = new EditableDate();
-
-        editableDate.setDay(9);
-        editableDate.setMonth(11);
-        editableDate.setYear(1996);
-
-        service.setDate(editableDate);
-
-        editableMember.getServicesReceived().add(service);
-
-        Member member = addMember(editableMember);
-
-        System.out.println("Is Member: " + isMember(member.getID()));
     }
 }

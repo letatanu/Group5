@@ -13,10 +13,7 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="member_profile")
-public class EditableMember extends EditableProfile implements EditableType {
-
-    @XmlElement(name="address")
-    private EditableAddress address;
+public class EditableMember extends EditableProfile {
 
     @XmlElementWrapper(name="services_received")
     @XmlElement(name="service_received")
@@ -28,20 +25,14 @@ public class EditableMember extends EditableProfile implements EditableType {
 
     public EditableMember(Member member) {
         super(member);
-        address = new EditableAddress(member.getAddress());
         servicesReceived = new ArrayList<>(member.getServicesSize());
         for(int i = 0; i < member.getServicesSize(); i++)
             servicesReceived.add(new EditableMemberService(member.getServiceReceived(i)));
     }
 
-    public void setAddress(EditableAddress address) {
-        this.address = address;
-    }
-
-    public void setAddress(Address address) { this.address = new EditableAddress(address); }
-
     public List<EditableMemberService> getServicesReceived() { return servicesReceived; }
 
+    @Override
     public Member getImmutableType() {
         ArrayList<MemberService> memberServices = new ArrayList<>(servicesReceived.size());
         for(EditableMemberService service : servicesReceived)

@@ -5,6 +5,7 @@ import project.database.profiles.profile.Date;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  * Created by Ashton on 10/28/2016.
@@ -38,9 +39,14 @@ public class EditableDate implements EditableType{
         this.day = day;
     }
 
-    public void setYear(int year) {
-        this.year = year;
-    }
+    public void setYear(int year) { this.year = year; }
+
+    @XmlTransient
+    public int getMonth() { return month; }
+
+    public int getDay() { return day; }
+
+    public int getYear() { return year; }
 
     public Date getImmutableType() { return new Date(month, day, year); }
 }
