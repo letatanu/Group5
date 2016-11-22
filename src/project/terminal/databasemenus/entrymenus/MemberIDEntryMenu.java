@@ -11,8 +11,8 @@ import project.terminal.StringEntryMenu;
 public class MemberIDEntryMenu extends StringEntryMenu{
     private ProfilesDatabase profile;
 
-    public MemberIDEntryMenu(ProfilesDatabase profile) {
-        super("Member ID Entry Menu", "Member ID Entry Menu", "Enter Member ID: ");
+    public MemberIDEntryMenu(String name, ProfilesDatabase profile) {
+        super(name, "Member ID Entry Menu", "Enter Member ID: ");
         this.profile = profile;
     }
 
