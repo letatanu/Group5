@@ -23,7 +23,7 @@ public final class Main {
 
         */
 
-        ProfilesDatabase p = new ProfilesDatabase();
+        /*ProfilesDatabase p = new ProfilesDatabase();
 
         p.initialize();
 
@@ -43,7 +43,7 @@ public final class Main {
 
         profileRemovalMenu.runMenu();
 
-        p.save();
+        p.save();*/
 
     }
 }

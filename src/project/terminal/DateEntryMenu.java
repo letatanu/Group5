@@ -64,5 +64,5 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     }
 
     @Override
-    protected void finalizeEntry() { entry = editableDate.exportDate(); }
+    protected void finalizeEntry() { entry = editableDate.getImmutableType(); }
 }
