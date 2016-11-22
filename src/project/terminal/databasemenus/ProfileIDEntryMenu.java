@@ -1,7 +1,6 @@
 package project.terminal.databasemenus;
 
 import project.database.profiles.ProfilesDatabase;
-import project.terminal.SingleLineEntryMenu;
 import project.terminal.StringEntryMenu;
 
 /**

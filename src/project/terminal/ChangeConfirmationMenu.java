@@ -1,10 +1,6 @@
 package project.terminal;
 
-import project.terminal.BooleanEntryMenu;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Set;
 
 /**

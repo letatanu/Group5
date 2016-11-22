@@ -2,9 +2,9 @@ package project.terminal.addressmenus;
 
 import project.database.profiles.profile.Address;
 import project.database.profiles.profile.editable.EditableAddress;
+import project.terminal.ChangeConfirmationMenu;
 import project.terminal.EditMenu;
 import project.terminal.TerminalMenu;
-import project.terminal.ChangeConfirmationMenu;
 
 import java.util.ArrayList;
 import java.util.List;
