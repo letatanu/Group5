@@ -34,8 +34,7 @@ public abstract class MultiLineEntryMenu<T> extends TerminalMenu<T> {
 
         initEntry();
 
-        int i;
-        for(i = 0; i < menuList.size();) {
+        for(int i = 0; i < menuList.size();) {
             TerminalMenu menu = menuList.get(i);
 
             menu.runMenu();

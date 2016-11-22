@@ -1,6 +1,5 @@
 package project.terminal.databasemenus.entrymenus;
 
-import project.terminal.SingleLineEntryMenu;
 import project.terminal.StringEntryMenu;
 
 /**
@@ -14,4 +13,6 @@ public class IDEntryMenu extends StringEntryMenu {
     public IDEntryMenu(String body, String entry_prompt) {
         super("ID Entry Menu", body, entry_prompt, 9, 9);
     }
+
+
 }

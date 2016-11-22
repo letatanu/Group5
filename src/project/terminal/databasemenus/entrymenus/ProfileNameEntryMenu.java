@@ -11,5 +11,9 @@ public class ProfileNameEntryMenu extends StringEntryMenu {
         super("Profile Name Entry", "Profile names can only be alphabetical and between 1-25 characters", "Full Name", ALPHABET_ONLY_REGEX, 1, 25);
     }
 
-    public void printMenu() {}
+    public void printMenu() {
+
+
+
+    }
 }
