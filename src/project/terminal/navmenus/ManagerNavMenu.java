@@ -13,7 +13,7 @@ public class ManagerNavMenu extends OperatorNavMenu {
     public ManagerNavMenu(ProfilesDatabase profile) {
         super("Manager Menu", "Manager Navagaiton Menu", "\tWelcome to the ChocAn System. Please input your selection.", profile);
 
-        addMenu(new ProfileModifyNavMenu("Provider Modify Menu", "Provider Modify Menu", "Allows modifications to providers", 2, profile));
+        addMenu(new ProfileModifyNavMenu("Provider Modify Menu", "Provider Modify Menu", "Allows modifications to providers", 1, profile));
 
         addMenu(new TerminalMenu("Print Manager Report") {
             @Override

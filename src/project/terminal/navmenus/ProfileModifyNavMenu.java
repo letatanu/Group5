@@ -14,8 +14,8 @@ import project.terminal.databasemenus.ProfileRemovalMenu;
  */
 public class ProfileModifyNavMenu extends SelectionMenu {
 
-    private static final int MEMBER_FLAG = 1;
-    private static final int PROVIDER_FLAG = 2;
+    private static final int MEMBER_FLAG = 0;
+    private static final int PROVIDER_FLAG = 1;
     private final int profileEntryFlag;
     private String titleID;
 
@@ -24,9 +24,9 @@ public class ProfileModifyNavMenu extends SelectionMenu {
 
         this.profileEntryFlag = PROFILE_ENTRY_FLAG;
 
-        if(profileEntryFlag == 1)
+        if(profileEntryFlag == MEMBER_FLAG)
             titleID = "Member ";
-        else if(profileEntryFlag == 2)
+        else if(profileEntryFlag == PROVIDER_FLAG)
             titleID = "Provider ";
 
         addMenu(new ProfileEntryMenu(titleID + "Entry Menu", profile, profileEntryFlag));

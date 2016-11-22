@@ -28,6 +28,7 @@ public final class Main {
 
         ProfilesDatabase p = new ProfilesDatabase();
         ManagerNavMenu c = new ManagerNavMenu(p);
+
         c.runMenu();
 
         /*ProfilesDatabase p = new ProfilesDatabase();
