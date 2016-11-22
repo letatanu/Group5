@@ -11,14 +11,14 @@ public class ManagerNavMenu extends OperatorNavMenu {
     public ManagerNavMenu() {
         super("Manager Menu", "Manager Navagaiton Menu", "\tWelcome to the ChocAn System. Please input your selection.");
 
-        addTerminalMenu(new TerminalMenu("Add/Update/Remove Provider") {
+        addMenu(new TerminalMenu("Add/Update/Remove Provider") {
             @Override
             public Object runMenu() {
                 return null;
             }
         });
 
-        addTerminalMenu(new TerminalMenu("Print Manager Report") {
+        addMenu(new TerminalMenu("Print Manager Report") {
             @Override
             public Object runMenu() {
                 return null;

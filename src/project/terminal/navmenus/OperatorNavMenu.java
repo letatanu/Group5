@@ -11,7 +11,7 @@ abstract class OperatorNavMenu extends SelectionMenu {
     OperatorNavMenu(String name, String title, String body) {
         super(name, title, body);
 
-        addTerminalMenu(new TerminalMenu("Add/Remove/Update Member") {
+        addMenu(new TerminalMenu("Add/Remove/Update Member") {
             @Override
             public Object runMenu() {
                 return null;

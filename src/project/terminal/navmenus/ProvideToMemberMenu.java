@@ -18,14 +18,14 @@ public class ProvideToMemberMenu extends SelectionMenu {
 
         this.profile = profile;
 
-        addTerminalMenu(new TerminalMenu("View Service Directory") {
+        addMenu(new TerminalMenu("View Service Directory") {
             @Override
             public Object runMenu() {
                 return null;
             }
         });
 
-        addTerminalMenu(new TerminalMenu("Provide Service to Member") {
+        addMenu(new TerminalMenu("Provide Service to Member") {
             @Override
             public Object runMenu() {
                 return null;

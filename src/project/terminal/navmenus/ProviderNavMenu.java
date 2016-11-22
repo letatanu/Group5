@@ -18,16 +18,16 @@ public class ProviderNavMenu extends OperatorNavMenu {
         super("ProviderNavMenu", "Provider Navigation Menu", "\tHello, select a menu choice\n");
 
         //Blank selections waiting for databasemenus to be created.
-        addTerminalMenu(new MemberIDEntryMenu(profile));
+        addMenu(new MemberIDEntryMenu(profile));
 
-        addTerminalMenu(new TerminalMenu("View Service Directory") {
+        addMenu(new TerminalMenu("View Service Directory") {
             @Override
             public Object runMenu() {
                 return null;
             }
         });
 
-        addTerminalMenu(new TerminalMenu("Print Provider Report") {
+        addMenu(new TerminalMenu("Print Provider Report") {
             @Override
             public Object runMenu() {
                 return null;

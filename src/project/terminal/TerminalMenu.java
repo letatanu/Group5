@@ -54,21 +54,16 @@ public abstract class TerminalMenu<T> {
     protected static void printBody(String body, int bodyWidth) {
         System.out.print('\n');
 
-        int last_break = -1;
-        int last_space = -1;
-        for(int i = 0; i < body.length(); i++) {
-            if (body.charAt(i) == ' ')
-                last_space = i;
-            if (i - last_break > bodyWidth) {
-                if (last_space == -1)
-                    System.out.println(body.substring(last_break + 1, i));
-                else {
-                    System.out.println(body.substring(last_break + 1, last_space));
-                    i = last_space;
-                    last_space = -1;
-                }
-                last_break = i;
-            }
+        //Version 1.1
+        int i = 0;
+
+        StringBuilder s = new StringBuilder(body);
+
+        //Wrap every bodyWidth number of characters
+        while((i = s.indexOf(" ", i + bodyWidth)) != -1) {
+            s.replace(i, i + 1, "\n");
         }
+
+        System.out.println(s.toString());
     }
 }

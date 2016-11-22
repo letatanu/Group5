@@ -50,7 +50,7 @@ public class AddressEntryMenu extends MultiLineEntryMenu<Address> {
 
     @Override
     protected void finalizeEntry() {
-        entry = editableAddress.exportAddress();
+        entry = editableAddress.getImmutableType();
     }
 
     @Override
