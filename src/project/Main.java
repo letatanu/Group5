@@ -2,27 +2,27 @@ package project;
 
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;
-import project.terminal.BooleanEntryMenu;
-import project.terminal.databasemenus.entrymenus.IDEntryMenu;
-import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
+import project.terminal.databasemenus.MemberEditMenu;
+import project.terminal.databasemenus.MemberEntryMenu;
+import project.terminal.databasemenus.MemberRemovalMenu;
 
 public final class Main {
 
     public static void main(String[] args) {
 
-        BooleanEntryMenu booleanEntryMenu = new BooleanEntryMenu("Proceed Confirmation", "Do you confirm the following changes? \n\t a) First \n\t b) Second");
-
-        //boolean b = booleanEntryMenu.runMenu();
-
-        //System.out.println(b);
-
-        IDEntryMenu s = new IDEntryMenu("Operator Login", "Enter Operator ID: ");
-
-        String c = s.runMenu();
-
-        System.out.println(c);
-
         /*
+        AddressEntryMenu addressEntryMenu = new AddressEntryMenu();
+
+        Address address = addressEntryMenu.runMenu();
+
+        AddressEditMenu addressEditMenu = new AddressEditMenu(address);
+
+        Address address1 = addressEditMenu.runMenu();
+
+        System.out.println(address.getCity() + " " + address1.getCity());
+
+       */
+
         ProfilesDatabase p = new ProfilesDatabase();
 
         p.initialize();
@@ -31,11 +31,18 @@ public final class Main {
 
         Member m = menu.runMenu();
 
-        Member m_test = p.getMember(m.getID());
+        //MemberEditMenu memberEditMenu = new MemberEditMenu(p, m);
 
-        System.out.println(m.getName() + " " + m_test.getName());
+        //memberEditMenu.runMenu();
+
+        //menu = new MemberEntryMenu("",p);
+
+        //menu.runMenu();
+
+        MemberRemovalMenu memberRemovalMenu = new MemberRemovalMenu(p);
+
+        memberRemovalMenu.runMenu();
 
         p.save();
-        */
     }
 }

@@ -1,7 +1,9 @@
-package project.terminal;
+package project.terminal.datemenus;
 
 import project.database.profiles.profile.Date;
 import project.database.profiles.profile.editable.EditableDate;
+import project.terminal.IntEntryMenu;
+import project.terminal.MultiLineEntryMenu;
 
 /**
  * Created by Ashton on 10/23/2016.
@@ -64,5 +66,5 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     }
 
     @Override
-    protected void finalizeEntry() { entry = editableDate.exportDate(); }
+    protected void finalizeEntry() { entry = editableDate.getImmutableType(); }
 }

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * Created by Ashton on 10/28/2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EditableAddress {
+public class EditableAddress implements EditableType {
     @XmlAttribute(name="streetAddress")
     private String streetAddress;
 
@@ -44,9 +44,7 @@ public class EditableAddress {
         this.state = state;
     }
 
-    public void setZip(String zip) {
-        this.zip = zip;
-    }
+    public void setZip(String zip) { this.zip = zip; }
 
-    public Address exportAddress() { return new Address(streetAddress, city, state, zip); }
+    public Address getImmutableType() { return new Address(streetAddress, city, state, zip); }
 }

@@ -11,37 +11,29 @@ import javax.xml.bind.annotation.XmlTransient;
 
 public abstract class EditableProfile {
     @XmlAttribute(name="profile_id")
-    protected String profileId;
+    protected String id;
 
-    @XmlAttribute(name="first_name")
-    protected String firstName;
-
-    @XmlAttribute(name="last_name")
-    protected String lastName;
+    @XmlAttribute(name="name")
+    protected String name;
 
     public EditableProfile() {
-        profileId = Profile.DEFAULT_ID;
-        firstName = "";
-        lastName = "";
+        id = Profile.DEFAULT_ID;
+        name = "";
     }
 
     public EditableProfile(Profile profile) {
-        profileId = profile.getID();
-        firstName = profile.getName();
+        id = profile.getID();
+        name = profile.getName();
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @XmlTransient
-    public void setProfileID(String id) {
-        profileId = id;
+    public void setID(String id) {
+        this.id = id;
     }
 
-    public String getProfileID() { return profileId; }
+    public String getID() { return id; }
  }

@@ -10,7 +10,7 @@ import javax.xml.bind.annotation.XmlAttribute;
  * Created by Ashton on 10/28/2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-public class EditableDate {
+public class EditableDate implements EditableType{
     @XmlAttribute(name="month")
     private int month;
     @XmlAttribute(name="day")
@@ -42,5 +42,5 @@ public class EditableDate {
         this.year = year;
     }
 
-    public Date exportDate() { return new Date(month, day, year); }
+    public Date getImmutableType() { return new Date(month, day, year); }
 }

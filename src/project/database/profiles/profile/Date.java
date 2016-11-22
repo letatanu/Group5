@@ -1,9 +1,11 @@
 package project.database.profiles.profile;
 
+import project.database.profiles.profile.editable.EditableDate;
+
 /**
  * Created by Ashton on 10/23/2016.
  */
-public final class Date {
+public final class Date implements ImmutableType {
     private final int month;
     private final int day;
     private final int year;
@@ -36,4 +38,6 @@ public final class Date {
     public String toString() {
         return month+"/"+day+"/"+year;
     }
+
+    public EditableDate getEditableType() { return new EditableDate(this); }
 }

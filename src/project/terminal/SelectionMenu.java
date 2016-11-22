@@ -47,24 +47,28 @@ public class SelectionMenu extends IntEntryMenu {
      *
      * @param menu - TerminalMenu to be added to the options
      */
-    public void addTerminalMenu(SingleLineEntryMenu menu) {
+    public void addMenu(TerminalMenu menu) {
         selectionOptions.add(menu);
     }
 
     /**
      * Overrides default printMenu to additionally print a indented descending
-     *     list of the selectionOptions by firstName with the associated selection
+     *     list of the selectionOptions by name with the associated selection
      *     number to the left.
      */
     @Override
     protected void printMenu() {
         super.printMenu();
 
+        printSelections();
+    }
+
+    protected void printSelections() {
         System.out.print('\n');
 
         int i = 1;
         for(TerminalMenu option : selectionOptions)
-                System.out.println("      " + (i++) + ") " + option.getName());
+            System.out.println("      " + (i++) + ") " + option.getName());
 
         System.out.println("      " + EXIT_OPTION + ") " + exitPhrase);
     }

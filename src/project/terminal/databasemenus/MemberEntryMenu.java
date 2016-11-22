@@ -1,9 +1,10 @@
-package project.terminal.databasemenus.entrymenus;
+package project.terminal.databasemenus;
 
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.editable.EditableMember;
 import project.terminal.MultiLineEntryMenu;
+import project.terminal.addressmenus.AddressEntryMenu;
 
 /**
  * Created by ashton on 10/11/16.
@@ -38,7 +39,7 @@ public class MemberEntryMenu extends MultiLineEntryMenu<Member> {
     protected void resolveMenu(int menu_index) {
         switch(menu_index) {
             case 0:
-                editableMember.setFirstName(((ProfileNameEntryMenu)getMenu(menu_index)).getEntry());
+                editableMember.setName(((ProfileNameEntryMenu)getMenu(menu_index)).getEntry());
                 break;
             case 1:
                 editableMember.setAddress(((AddressEntryMenu)getMenu(menu_index)).getEntry());

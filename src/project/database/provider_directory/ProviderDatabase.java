@@ -1,5 +1,7 @@
 package project.database.provider_directory;
 
+import project.database.profiles.profile.ProviderService;
+
 /**
  * ProviderDatabase
  * Created by Austin on 11/19/16.
@@ -12,7 +14,7 @@ public class ProviderDatabase {
     private boolean initialized = false;
 
 
-     public Service getService(){return null;}
+     public ProviderService getService(){return null;}
 
 
     /**
@@ -45,7 +47,7 @@ public class ProviderDatabase {
     public boolean isProvider(String providerID){return false;}
     public boolean isService(String serviceID){ return false;}
 
-    public Service addService(Service editableService){return null;}
+    public ProviderService addService(ProviderService editableService){return null;}
 
     /**
      * Returns requested service from DB if it matches.
@@ -53,9 +55,9 @@ public class ProviderDatabase {
      * @param serviceID
      * @return matching service.
      */
-    public Service getService(String serviceID){
+    public ProviderService getService(String serviceID){
 
-        Service matchedService = null;
+        ProviderService matchedService = null;
 
         return matchedService;
     }

@@ -103,8 +103,6 @@ public class StringEntryMenu extends SingleLineEntryMenu<String> {
                 case -4:
                     System.out.println("Invalid Entry!");
                     break;
-                default:
-                    System.out.println("Unknown Error!");
             }
         }
     }
