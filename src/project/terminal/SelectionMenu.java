@@ -12,14 +12,14 @@ import java.util.ArrayList;
 public class SelectionMenu extends IntEntryMenu {
 
     //Default Settings
-    private static final int EXIT_OPTION = 0;
+    protected static final int EXIT_OPTION = 0;
     private static final String DEFAULT_EXIT_PHRASE = "Back";
 
     //Settings
     protected String exitPhrase = DEFAULT_EXIT_PHRASE;
 
     //List of TerminalMenus used as options to select from in the menu
-    private ArrayList<TerminalMenu> selectionOptions;
+    protected ArrayList<TerminalMenu> selectionOptions;
 
     //Constructors
     public SelectionMenu(String name, String title, String body) {
@@ -47,7 +47,7 @@ public class SelectionMenu extends IntEntryMenu {
      *
      * @param menu - TerminalMenu to be added to the options
      */
-    public void addTerminalMenu(SingleLineEntryMenu menu) {
+    public void addMenu(TerminalMenu menu) {
         selectionOptions.add(menu);
     }
 
@@ -60,11 +60,15 @@ public class SelectionMenu extends IntEntryMenu {
     protected void printMenu() {
         super.printMenu();
 
+        printSelections();
+    }
+
+    protected void printSelections() {
         System.out.print('\n');
 
         int i = 1;
         for(TerminalMenu option : selectionOptions)
-                System.out.println("      " + (i++) + ") " + option.getName());
+            System.out.println("      " + (i++) + ") " + option.getName());
 
         System.out.println("      " + EXIT_OPTION + ") " + exitPhrase);
     }

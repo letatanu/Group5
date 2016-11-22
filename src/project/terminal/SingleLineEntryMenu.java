@@ -23,6 +23,7 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
 
     //Exit Entry - Used to define a specific entry to break out of the menu
     protected boolean explicitExit = false;
+    protected String exitInput = null;
     protected T exitEntry = null;
 
     //Input Scanner
@@ -42,13 +43,20 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
     }
 
     /**
-     * Sets an exit value, which is used to return to the previous menu *
+     * Sets an exit value of type T, which is used to return to the previous menu *
      *
      * @param exitEntry - Explicit exit Object of type T
      */
     protected void setExitValue(T exitEntry) {
         this.exitEntry = exitEntry;
     }
+
+    /**
+     * Sets an exit value, which is used to return to the previous menu *
+     *
+     * @param exitInput - Explicit exit Object of type String
+     */
+    protected void setExitInput(String exitInput) { this.exitInput = exitInput; }
 
     /** Returns whether the current entry value is equal to the exit value */
     public boolean isExitEntry() {
@@ -72,22 +80,31 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
      */
     public T runMenu() {
         entry = null;
+        String input;
         do {
             printMenu();
             int response_code;
             do {
-                String input = displayEntryPrompt();
+                input = displayEntryPrompt();
 
-                entry = parseInputForEntry(input);
+                if (input.equals(exitInput)) {
+                    response_code = -1;
+                    break;
+                }
+                else {
+                    entry = parseInputForEntry(input);
 
-                response_code = generateEntryResponseCode();
+                    response_code = generateEntryResponseCode();
 
-                System.out.print('\n');
-                printEntryResponse(response_code);
-
+                    System.out.print('\n');
+                    printEntryResponse(response_code);
+                }
             } while(response_code != 0);
-            processValidEntry();
-        } while (exitEntry != null && !exitEntry.equals(entry) && explicitExit);
+
+            if (response_code == 0)
+                processValidEntry();
+
+        } while (exitEntry != null && !(exitEntry.equals(entry) || input.equals(exitInput)) && explicitExit);
         return entry;
     }
 
@@ -106,10 +123,24 @@ public abstract class SingleLineEntryMenu<T extends Comparable<T>> extends Termi
         return entryPrompt;
     }
 
+    /** Sets the body */
+    protected void setBody(String body) { this.body = body; }
+
+    /** Sets the body width */
+    protected void setBodyWidth(int bodyWidth) { this.bodyWidth = bodyWidth; }
+
+    protected void printTitle() {
+        TerminalMenu.printTitle(title, titleAccentChar, bodyWidth);
+    }
+
+    protected void printBody() {
+        TerminalMenu.printBody(body, bodyWidth);
+    }
+
     /** Default menu print which prints the title, then the body */
     protected void printMenu() {
-        printTitle(title, titleAccentChar, bodyWidth);
-        printBody(body, bodyWidth);
+        printTitle();
+        printBody();
     }
 
     /**

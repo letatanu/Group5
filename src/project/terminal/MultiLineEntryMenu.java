@@ -53,6 +53,8 @@ public abstract class MultiLineEntryMenu<T> extends TerminalMenu<T> {
             resolveMenu(i++);
         }
 
+        finalizeEntry();
+
         return entry;
     }
 
@@ -71,6 +73,9 @@ public abstract class MultiLineEntryMenu<T> extends TerminalMenu<T> {
 
     /** Used to initialize the entry, in case it must be constructed */
     protected abstract void initEntry();
+
+    /** Used to initialize the entry, in case it must be constructed */
+    protected abstract void finalizeEntry();
 
     /** Resolves the menu at given index - Such as retrieving the menu entry value and setting it
      *    in the primary Entry of type T

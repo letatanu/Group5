@@ -71,8 +71,8 @@ public class StringEntryMenu extends SingleLineEntryMenu<String> {
         if (entry != null) {
             if (entry.length() >= minLength) {
                 if (entry.length() <= maxLength) {
-                    if (!entry.matches(regex))
-                        response_code = -4;
+                    //if (!entry.matches(regex))
+                    //    response_code = -4;
                 } else
                     response_code = -3;
             } else
@@ -103,8 +103,6 @@ public class StringEntryMenu extends SingleLineEntryMenu<String> {
                 case -4:
                     System.out.println("Invalid Entry!");
                     break;
-                default:
-                    System.out.println("Unknown Error!");
             }
         }
     }
