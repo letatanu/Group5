@@ -19,19 +19,29 @@ public final class ProviderService {
 
     // Attributes
     // ****Confusing variable names****
-    private final String title;
-    private final String body;
-    private final Date dateOfService; //
-    private final Date dateReceived; //
-    //private final Time timeReceived;
-    private final String memberName;
-    private final String memberID;
-    private final String serviceCode;
-    private final double fee;
+    private String title;
+    private String body;
+    private String dateOfService; //
+    private String dateReceived; //
+    private String memberName;
+    private String memberID;
+    private String serviceCode;
+    private double fee;
 
 
     // Constructors
-    public ProviderService(String title, String body, Date dateOfService, Date dateReceived, String memberName, String memberID, String serviceCode, double fee) {
+    public ProviderService() {
+        title = null;
+        body = null;
+        dateOfService = null;
+        dateReceived = null;
+        memberName = null;
+        memberID = null;
+        serviceCode = null;
+        fee = 0;
+    }
+
+    public ProviderService(String title, String body, String dateOfService, String dateReceived, String memberName, String memberID, String serviceCode, double fee) {
         this.title = title;
         this.body = body;
         this.dateOfService = dateOfService;
@@ -42,25 +52,47 @@ public final class ProviderService {
         this.fee = fee;
     }
 
-    /**
-     * Simple method to display contents. Mainly
-     * a helper tool while we get the DB up and
-     * running.
-     */
-    public void displayAllAttributes(){
-        if(!title.isEmpty() && title != null){
-            System.out.println("Title: "+ title);
-        }
-        System.out.println("Fee:" + fee);
-
+    // Getters
+    public String getTitle(){
+        return title;
     }
 
+    public String getBody() {
+        return body;
+    }
 
+    public String getDateOfService() {
+        return dateOfService;
+    }
 
+    public String getDateReceived() {
+        return dateReceived;
+    }
 
+    public String getMemberName() {
+        return memberName;
+    }
 
+    public String getMemberID() {
+        return memberID;
+    }
 
+    public String getServiceCode() {
+        return serviceCode;
+    }
 
+    public double getFee() {
+        return fee;
+    }
 
-
+    public void displayAllAttributes(){
+        System.out.println("Title: " + title);
+        System.out.println("Body: " + body);
+        System.out.println("Date of service: " + dateOfService);
+        System.out.println("Date received: " + dateReceived);
+        System.out.println("Member name: " + memberName);
+        System.out.println("Member ID: " + memberID);
+        System.out.println("Service Code: " + serviceCode);
+        System.out.println("Fee: " + fee);
+    }
 }

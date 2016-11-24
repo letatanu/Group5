@@ -17,9 +17,11 @@ public class ProviderDatabase {
 
     private boolean initialized = false;
     // Only need a single file to work with, since provider services shouldn't change.
-    private static final String PROVIDER_DATA_PATH = "project/database/provider_directory/services.xml";
-    ProviderServicesMetaData metaData;
-    ArrayList<ProviderService> servicesList;
+    private static final String META_DATA_PATH = "src/project/database/provider_directory/services.xml";
+    private static final String PROVIDER_DIRECTORY_PATH = "src/project/database/provider_directory/";
+
+    private ProviderServicesMetaData metaData;
+    //private ArrayList<ProviderService> servicesList;
 
     /**
      * Initialize database and flag INITIALIZED
@@ -29,31 +31,19 @@ public class ProviderDatabase {
      * @return true on success.
      * @return false on failure.
      */
-    public boolean initialize(){
+    public void initialize(){
         try {
-            File metaDataFile = new File(PROVIDER_DATA_PATH);
-            JAXBContext jaxbContext = JAXBContext.newInstance(ProviderService.class);
+            File metaDataFile = new File(META_DATA_PATH);
+            JAXBContext jaxbContext = JAXBContext.newInstance(ProviderServicesMetaData.class);
             Unmarshaller um = jaxbContext.createUnmarshaller();
-            ProviderService i = (ProviderService)um.unmarshal(metaDataFile);
+            metaData = ((ProviderServicesMetaData)um.unmarshal(metaDataFile));
+            initialized = true;
+            System.out.println("Number of services initialized: " + metaData.countServices());
 
-            /*
-            * Basically we need to create ProviderService objects
-            * from tags "service" in "services.xml" and add
-            * them to "servicesList" (ArrayList type).
-            * This allows us to interract with ProviderServices
-            * stored in the ArrayList. Once done, we set Database
-            * as initialized.
-            */
-
-            // initialized = true;
-            return true;
         } catch(Exception e) {
-            System.out.println("Error: ProfileMetaData failed to load");
+            System.out.println("Error: META_DATA_PATH failed to load");
             e.printStackTrace();
-            return false;
         }
-
-
     }
 
     /**
@@ -63,10 +53,7 @@ public class ProviderDatabase {
      */
     public void save(){
 
-
     }
-
-
 
     /**
      * Will return a service corresponding to a service
@@ -86,7 +73,6 @@ public class ProviderDatabase {
         * matched element.
         */
             return service;
-
         }
 
         return service;
@@ -101,7 +87,6 @@ public class ProviderDatabase {
      * @return ArrayList
      */
     public ArrayList<ProviderService> getServicesByProviderType(String id){
-
 
         return null;
     }
@@ -134,10 +119,9 @@ public class ProviderDatabase {
      */
     public ProviderService addService(ProviderService editableService){
 
-
-
         return null;
     }
+
 
     /**
      * Returns requested service from DB if it matches.
@@ -148,44 +132,24 @@ public class ProviderDatabase {
     public ProviderService getService(String serviceID){
 
         ProviderService matchedService = null;
-
         return matchedService;
     }
+
 
     public boolean removeService(String serviceID){
 
         return false;
     }
 
+
     /**
      * Small test-runs for database. Remove before deployment.
      *
      */
-    public boolean test(){
+    public static void main(String[] args) {
 
-        /*
-        // Test 1
-        if(){
-            return false;
-        }
-        // Test 2
-        if(2){
-            return false;
-        }
-        // Test 3
-        if(3){
-            return false;
-        }
-        // Test 4
-        if(4){
-            return false;
-        }
-        */
+        ProviderDatabase db = new ProviderDatabase();
+        db.initialize();
 
-        return false;
     }
-
-
-
-
 }

@@ -1,86 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- providerTypes:
-    0 =
-    1 =
-    2 =
- -->
-<service_list>
-    <service id = "0">
+<services name="provider_services_list">
+    <ProviderService id="0">
         <title>Identify the symptoms.</title>
-        <body></body>
-        <dateOfService></dateOfService>
-        <dateReceived></dateReceived>
-        <timeReceived></timeReceived>
-        <memberName></memberName>
-        <memberID></memberID>
-        <serviceCode></serviceCode>
+        <body>0</body>
+        <dateOfService>0</dateOfService>
+        <dateReceived>0</dateReceived>
+        <memberName>0</memberName>
+        <memberID>0</memberID>
+        <serviceCode>0</serviceCode>
         <fee>42.00</fee>
-        <providerAccess>
-            <provider>0</provider>
-            <provider>1</provider>
-            <provider>2</provider>
-        </providerAccess>
-    </service>
-    <service id = "1">
-        <title>Identify why it is a problem in your life.</title>
-        <body></body>
-        <dateOfService></dateOfService>
-        <dateReceived></dateReceived>
-        <timeReceived></timeReceived>
-        <memberName></memberName>
-        <memberID></memberID>
-        <serviceCode></serviceCode>
+    </ProviderService>
+    <ProviderService id="1">
+        <title>Do stuff with the symptoms.</title>
+        <body>0</body>
+        <dateOfService>0</dateOfService>
+        <dateReceived>0</dateReceived>
+        <memberName>0</memberName>
+        <memberID>0</memberID>
+        <serviceCode>0</serviceCode>
         <fee>42.00</fee>
-        <providerAccess>
-            <provider>0</provider>
-        </providerAccess>
-    </service>
-    <service id = "2">
-        <title>Identify the cause.</title>
-        <body></body>
-        <dateOfService></dateOfService>
-        <dateReceived></dateReceived>
-        <timeReceived></timeReceived>
-        <memberName></memberName>
-        <memberID></memberID>
-        <serviceCode></serviceCode>
-        <fee>42.00</fee>
-        <providerAccess>
-            <provider>0</provider>
-            <provider>1</provider>
-            <provider>2</provider>
-        </providerAccess>
-    </service>
-    <service id = "3">
-        <title>Solve the root problem. </title>
-        <body></body>
-        <dateOfService></dateOfService>
-        <dateReceived></dateReceived>
-        <timeReceived></timeReceived>
-        <memberName></memberName>
-        <memberID></memberID>
-        <serviceCode></serviceCode>
-        <fee>42.00</fee>
-        <providerAccess>
-            <provider>0</provider>
-            <provider>1</provider>
-            <provider>2</provider>
-        </providerAccess>
-    </service>
-    <service id = "4">
-        <title>Know what to expect as you minimize your chocolate intake.</title>
-        <body></body>
-        <dateOfService></dateOfService>
-        <dateReceived></dateReceived>
-        <timeReceived></timeReceived>
-        <memberName></memberName>
-        <memberID></memberID>
-        <serviceCode></serviceCode>
-        <fee>42.00</fee>
-        <providerAccess>
-            <provider>0</provider>
-            <provider>1</provider>
-            <provider>2</provider>
-        </providerAccess>
-    </service>
-</service_list>
+    </ProviderService>
+</services>
