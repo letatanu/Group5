@@ -6,7 +6,7 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Alex on 11/24/2016.
- * This object tests StringEntryMenu class and IntEntryMenu.
+ * This object tests StringEntryMenu class and IntEntryMenu class.
  */
 public class SelectionMenuTest {
 
