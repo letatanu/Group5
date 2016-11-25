@@ -30,5 +30,6 @@ public class SelectionMenuTest {
         assertEquals("Title",Selection_menu.getTitle());
         assertEquals("Body",Selection_menu.getBody());
         assertEquals("Select Option",Selection_menu.getEntryPrompt());
+
     }
 }
