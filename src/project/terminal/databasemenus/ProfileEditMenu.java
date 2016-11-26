@@ -3,7 +3,9 @@ package project.terminal.databasemenus;
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Address;
 import project.database.profiles.profile.Member;
+import project.database.profiles.profile.Profile;
 import project.database.profiles.profile.editable.EditableMember;
+import project.database.profiles.profile.editable.EditableProfile;
 import project.terminal.ChangeConfirmationMenu;
 import project.terminal.EditMenu;
 import project.terminal.TerminalMenu;
@@ -15,17 +17,17 @@ import java.util.List;
 /**
  * Created by ashton on 15/11/16.
  */
-public class MemberEditMenu extends EditMenu<Member, EditableMember> {
+public class ProfileEditMenu extends EditMenu<Profile, EditableProfile> {
 
     private ProfilesDatabase profilesDatabase;
 
-    public MemberEditMenu(ProfilesDatabase profilesDatabase, String memberID) throws NullPointerException { super("Edit Member", "Member", profilesDatabase.getMember(memberID));
+    public ProfileEditMenu(ProfilesDatabase profilesDatabase, String memberID) throws NullPointerException { super("Edit Profile", "Profile", profilesDatabase.getMember(memberID));
         if (immutableType == null)
-            throw new NullPointerException("Invalid MemberID");
+            throw new NullPointerException("Invalid Profile ID");
         this.profilesDatabase = profilesDatabase;
     }
 
-    public MemberEditMenu(ProfilesDatabase profilesDatabase, Member immutableMember) {
+    public ProfileEditMenu(ProfilesDatabase profilesDatabase, Member immutableMember) {
         super("Edit Member", "Member", immutableMember);
         this.profilesDatabase = profilesDatabase;
     }
@@ -41,14 +43,14 @@ public class MemberEditMenu extends EditMenu<Member, EditableMember> {
     }
 
     @Override
-    public String getEditMenuBody(EditableMember editableMember) {
+    public String getEditMenuBody(EditableProfile editableProfile) {
         String body = "";
 
-        Member m = editableMember.getImmutableType();
+        Profile p = (Profile)editableProfile.getImmutableType();
 
-        body += "\n\tName: " + m.getName();
+        body += "\n\tName: " + p.getName();
 
-        Address a = m.getAddress();
+        Address a = p.getAddress();
 
         body += "\n\tStreet Address: " + a.getStreetAddress();
         body += "\n\tState: " + a.getState();
@@ -59,13 +61,13 @@ public class MemberEditMenu extends EditMenu<Member, EditableMember> {
     }
 
     @Override
-    protected void setValue(EditableMember editableMember, int valueIndex, Object value) {
+    protected void setValue(EditableProfile editableProfile, int valueIndex, Object value) {
         switch (valueIndex) {
             case 0:
-                editableMember.setName((String)value);
+                editableProfile.setName((String)value);
                 break;
             case 1:
-                editableMember.setAddress((Address)value);
+                editableProfile.setAddress((Address)value);
                 break;
             default:
                 System.out.println("Invalid Value Index!");
@@ -73,12 +75,12 @@ public class MemberEditMenu extends EditMenu<Member, EditableMember> {
     }
 
     @Override
-    protected boolean confirmChanges(EditableMember editableMember) {
-        Member m = editableMember.getImmutableType();
-        Address a = m.getAddress();
+    protected boolean confirmChanges(EditableProfile editableProfile) {
+        Profile p = (Profile)editableProfile.getImmutableType();
+        Address a = p.getAddress();
 
         ChangeConfirmationMenu changeConfirmationMenu = new ChangeConfirmationMenu();
-        changeConfirmationMenu.addChange("Name", immutableType.getName(), m.getName());
+        changeConfirmationMenu.addChange("Name", immutableType.getName(), p.getName());
         changeConfirmationMenu.addChange("Street Address", immutableType.getAddress().getStreetAddress(), a.getStreetAddress());
         changeConfirmationMenu.addChange("State", immutableType.getAddress().getState(), a.getState());
         changeConfirmationMenu.addChange("City", immutableType.getAddress().getCity(), a.getCity());
@@ -91,5 +93,5 @@ public class MemberEditMenu extends EditMenu<Member, EditableMember> {
     }
 
     @Override
-    protected void onConfirmation(Member editedMember) { profilesDatabase.updateMember(editedMember); }
+    protected void onConfirmation(Profile editedProfile) { profilesDatabase.updateProfile(editedProfile); }
 }
