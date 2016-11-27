@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ProviderService>
+    <ProviderServiceID>1</ProviderServiceID>
+    <memberID>0</memberID>
+    <title>Identify the symptoms.</title>
+    <body>0</body>
+    <serviceIDs>
+        <serviceID></serviceID>
+        <serviceID></serviceID>
+    </serviceIDs>
+    <dateOfService>0</dateOfService>
+    <dateReceived>0</dateReceived>
+    <timeReceived>0</timeReceived>
+    <comments>0</comments>
+    <fee>42.00</fee>
+</ProviderService>

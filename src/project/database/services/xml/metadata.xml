@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service_list name="Service_list">
+    <service >123</service>
+    <service>457</service>
+    <service>57</service>
+</service_list>
