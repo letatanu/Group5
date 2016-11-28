@@ -5,7 +5,8 @@ import project.database.profiles.profile.Member;
 import project.terminal.StringEntryMenu;
 import project.terminal.TerminalMenu;
 import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
-import project.terminal.databasemenus.entrymenus.MemberIDEntryMenu;
+import project.terminal.databasemenus.identrymenus.IDEntryProvide;
+
 
 /**
  * Created by Anders on 11/17/2016.
@@ -15,11 +16,14 @@ import project.terminal.databasemenus.entrymenus.MemberIDEntryMenu;
  */
 public class ProviderNavMenu extends OperatorNavMenu {
 
-    public ProviderNavMenu(ProfilesDatabase profile) {
+    private final String providerID;
+
+    public ProviderNavMenu(ProfilesDatabase profile, String providerID) {
         super("ProviderNavMenu", "Provider Navigation Menu", "\tHello, select a menu choice\n", profile);
 
+        this.providerID = providerID;
         //Blank selections waiting for databasemenus to be created.
-        addMenu(new MemberIDEntryMenu("Provide to Member", profile));
+        addMenu(new IDEntryProvide(profile, "Provide to Member"));
 
         addMenu(new TerminalMenu("View Service Directory") {
             @Override

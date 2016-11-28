@@ -27,7 +27,7 @@ public final class Main {
         */
 
         ProfilesDatabase p = new ProfilesDatabase();
-        ManagerNavMenu c = new ManagerNavMenu(p);
+        ProviderNavMenu c = new ProviderNavMenu(p, "111111111");
 
         c.runMenu();
 
