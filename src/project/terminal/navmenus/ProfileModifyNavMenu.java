@@ -6,6 +6,7 @@ import project.terminal.StringEntryMenu;
 import project.terminal.databasemenus.ProfileEditMenu;
 import project.terminal.databasemenus.ProfileEntryMenu;
 import project.terminal.databasemenus.ProfileRemovalMenu;
+import project.terminal.databasemenus.identrymenus.IDEntryToEdit;
 
 /**
  * Created by Anders on 11/22/2016.
@@ -30,8 +31,8 @@ public class ProfileModifyNavMenu extends SelectionMenu {
             titleID = "Provider ";
 
         addMenu(new ProfileEntryMenu(titleID + "Entry Menu", profile, profileEntryFlag));
-        addMenu(new StringEntryMenu(titleID + "Edit Menu", "", "Enter " + titleID + "ID"));
-        addMenu(new StringEntryMenu(titleID + "Removal Menu", "", "Enter " + titleID + "ID"));
+        addMenu(new IDEntryToEdit(titleID + "Edit Menu", titleID + "Edit Menu", "Enter " + titleID + "ID", profile));
+        addMenu(new ProfileRemovalMenu(profile, profileEntryFlag, titleID + "Removal Menu", titleID + "Removal Menu", "Enter ID to Remove"));
     }
 
 

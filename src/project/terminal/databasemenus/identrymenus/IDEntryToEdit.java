@@ -22,8 +22,8 @@ public class IDEntryToEdit extends ProfileIDEntryMenu {
 
     private final ProfilesDatabase profilesDatabase;
 
-    public IDEntryToEdit(String name, String body, String entry_prompt, ProfilesDatabase profilesDatabase, int FLAG) {
-        super(profilesDatabase, FLAG, name, body, entry_prompt);
+    public IDEntryToEdit(String name, String body, String entry_prompt, ProfilesDatabase profilesDatabase) {
+        super(profilesDatabase, name, body, entry_prompt);
         this.profilesDatabase = profilesDatabase;
     }
 
