@@ -1,8 +1,11 @@
 package project.terminal.navmenus;
 
 import project.database.profiles.ProfilesDatabase;
+import project.database.profiles.profile.Member;
+import project.terminal.StringEntryMenu;
 import project.terminal.TerminalMenu;
-import project.terminal.databasemenus.identrymenus.IDEntryProvide;
+import project.terminal.databasemenus.entrymenus.MemberEntryMenu;
+import project.terminal.databasemenus.entrymenus.MemberIDEntryMenu;
 
 /**
  * Created by Anders on 11/17/2016.
@@ -12,19 +15,11 @@ import project.terminal.databasemenus.identrymenus.IDEntryProvide;
  */
 public class ProviderNavMenu extends OperatorNavMenu {
 
-    private final ProfilesDatabase profilesDatabase;
-
-    //You will need the ID when printing a specific provider's report
-    private final String providerID;
-
-    public ProviderNavMenu(ProfilesDatabase profilesDatabase, String providerID) {
-        super("ProviderNavMenu", "Provider Navigation Menu", "\tHello, select a menu choice\n", profilesDatabase);
-
-        this.profilesDatabase = profilesDatabase;
-        this.providerID = providerID;
+    public ProviderNavMenu(ProfilesDatabase profile) {
+        super("ProviderNavMenu", "Provider Navigation Menu", "\tHello, select a menu choice\n", profile);
 
         //Blank selections waiting for databasemenus to be created.
-        addMenu(new IDEntryProvide(profilesDatabase, "Provide to Member Menu"));
+        addMenu(new MemberIDEntryMenu("Provide to Member", profile));
 
         addMenu(new TerminalMenu("View Service Directory") {
             @Override

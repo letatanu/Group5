@@ -12,13 +12,11 @@ import project.terminal.TerminalMenu;
 public class ProvideToMemberMenu extends SelectionMenu {
 
     private ProfilesDatabase profile;
-    private String memberID;
 
-    public ProvideToMemberMenu(ProfilesDatabase profile, String memberID) {
+    public ProvideToMemberMenu(ProfilesDatabase profile) {
         super("Provider to Member Menu", "Provider to Member Menu", "Select choice to provide to member.");
 
         this.profile = profile;
-        this.memberID = memberID;
 
         addMenu(new TerminalMenu("View Service Directory") {
             @Override

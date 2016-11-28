@@ -1,9 +1,7 @@
-package project.terminal.datemenus;
+package project.terminal;
 
 import project.database.profiles.profile.Date;
 import project.database.profiles.profile.editable.EditableDate;
-import project.terminal.IntEntryMenu;
-import project.terminal.MultiLineEntryMenu;
 
 /**
  * Created by Ashton on 10/23/2016.
@@ -24,11 +22,21 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     /** Setup for the menus used for Date entry */
     @Override
     protected void setupMenus() {
-        addMenu(new MonthEntryMenu());
+        addMenu(new IntEntryMenu("", "", "", "Enter the month", 1, 12) {
+            @Override
+            protected void printMenu() {}
+        });
 
-        addMenu(new DayEntryMenu());
+        addMenu(new IntEntryMenu("", "", "", "Enter the day or type 5 to return to previous menu", 1, 31) {
+            @Override
+            protected void printMenu() {
+                setExitValue(5);}
+        });
 
-        addMenu(new YearEntryMenu());
+        addMenu(new IntEntryMenu("", "", "", "Enter the year", 1990, 2016) {
+            @Override
+            protected void printMenu() {}
+        });
     }
 
     /** Initializes the Date */
@@ -36,10 +44,6 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
     protected void initEntry() {
         editableDate = new EditableDate();
     }
-
-    /** Finalizes the Date */
-    @Override
-    protected void finalizeEntry() { entry = editableDate.getImmutableType(); }
 
     /** Resolves the Month, Day and year singleLineEntry menus */
     @Override
@@ -58,4 +62,7 @@ public class DateEntryMenu extends MultiLineEntryMenu<Date> {
                 System.out.println("Invalid Menu Index!");
         }
     }
+
+    @Override
+    protected void finalizeEntry() { entry = editableDate.getImmutableType(); }
 }
