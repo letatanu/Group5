@@ -1,9 +1,10 @@
 package project.database.profiles;
 
-import project.database.profiles.profile.*;
+import project.database.profiles.profile.Member;
+import project.database.profiles.profile.Profile;
+import project.database.profiles.profile.Provider;
 
 import javax.xml.bind.annotation.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
 import java.util.Vector;
@@ -13,6 +14,7 @@ import java.util.Vector;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name="meta_data")
+@XmlType(factoryMethod="newInstance")
 public class ProfilesMetaData {
 
     @XmlAttribute(name="next_seed")

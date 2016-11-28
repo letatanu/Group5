@@ -1,7 +1,6 @@
 package project.database.profiles.profile;
 
 import project.database.profiles.profile.editable.EditableTime;
-import project.database.profiles.profile.editable.EditableType;
 
 /**
  * Created by Ashton on 11/21/2016.

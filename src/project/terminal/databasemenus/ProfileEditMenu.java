@@ -4,7 +4,6 @@ import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Address;
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.Profile;
-import project.database.profiles.profile.editable.EditableMember;
 import project.database.profiles.profile.editable.EditableProfile;
 import project.terminal.ChangeConfirmationMenu;
 import project.terminal.EditMenu;

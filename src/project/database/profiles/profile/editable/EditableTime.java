@@ -1,6 +1,5 @@
 package project.database.profiles.profile.editable;
 
-import project.database.profiles.profile.ImmutableType;
 import project.database.profiles.profile.Time;
 
 import javax.xml.bind.annotation.XmlAccessType;

@@ -1,6 +1,5 @@
 package project.database.profiles.profile.editable;
 
-import project.database.profiles.profile.Address;
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.MemberService;
 

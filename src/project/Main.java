@@ -3,7 +3,6 @@ package project;
 import project.database.profiles.ProfilesDatabase;
 import project.database.profiles.profile.Member;
 import project.terminal.databasemenus.ProfileEditMenu;
-import project.terminal.databasemenus.ProfileRemovalMenu;
 import project.terminal.databasemenus.ProfileEntryMenu;
 
 public final class Main {

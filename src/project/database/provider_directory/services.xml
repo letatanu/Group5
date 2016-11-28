@@ -1,23 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <services name="provider_services_list">
-    <ProviderService id="0">
-        <title>Identify the symptoms.</title>
-        <body>0</body>
-        <dateOfService>0</dateOfService>
-        <dateReceived>0</dateReceived>
-        <memberName>0</memberName>
-        <memberID>0</memberID>
+    <service>
+        <serviceName>Hello World</serviceName>
+        <serviceCode>0</serviceCode>
+        <fee>0.00</fee>
+    </service>
+    <service>
+        <serviceName>Fuck you world</serviceName>
         <serviceCode>0</serviceCode>
         <fee>42.00</fee>
-    </ProviderService>
-    <ProviderService id="1">
-        <title>Do stuff with the symptoms.</title>
-        <body>0</body>
-        <dateOfService>0</dateOfService>
-        <dateReceived>0</dateReceived>
-        <memberName>0</memberName>
-        <memberID>0</memberID>
-        <serviceCode>0</serviceCode>
-        <fee>42.00</fee>
-    </ProviderService>
+    </service>
 </services>

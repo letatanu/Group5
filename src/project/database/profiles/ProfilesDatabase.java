@@ -3,7 +3,8 @@ package project.database.profiles;
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.Profile;
 import project.database.profiles.profile.Provider;
-import project.database.profiles.profile.editable.*;
+import project.database.profiles.profile.editable.EditableMember;
+import project.database.profiles.profile.editable.EditableProvider;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;

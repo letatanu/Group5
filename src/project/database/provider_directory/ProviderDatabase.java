@@ -3,9 +3,9 @@ package project.database.provider_directory;
 import project.database.profiles.profile.ProviderService;
 
 import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  * ProviderDatabase object to be used for
@@ -15,13 +15,11 @@ import java.util.ArrayList;
  */
 public class ProviderDatabase {
 
+    private Services services;
     private boolean initialized = false;
     // Only need a single file to work with, since provider services shouldn't change.
-    private static final String META_DATA_PATH = "src/project/database/provider_directory/services.xml";
-    private static final String PROVIDER_DIRECTORY_PATH = "src/project/database/provider_directory/";
-
-    private ProviderServicesMetaData metaData;
-    //private ArrayList<ProviderService> servicesList;
+    private static final String SERVICES_PATH = "src/project/database/provider_directory/services.xml";
+    //private static final String PROVIDER_DIRECTORY_PATH = "src/project/database/provider_directory/";
 
     /**
      * Initialize database and flag INITIALIZED
@@ -33,18 +31,23 @@ public class ProviderDatabase {
      */
     public void initialize(){
         try {
-            File metaDataFile = new File(META_DATA_PATH);
-            JAXBContext jaxbContext = JAXBContext.newInstance(ProviderServicesMetaData.class);
+
+            services = new Services();
+            File servicesFile = new File(SERVICES_PATH);
+            JAXBContext jaxbContext = JAXBContext.newInstance(Services.class);
             Unmarshaller um = jaxbContext.createUnmarshaller();
-            metaData = ((ProviderServicesMetaData)um.unmarshal(metaDataFile));
+            Services servicesUnmarshal = ((Services)um.unmarshal(servicesFile));
+
+            System.out.println("initialize(), displaying unmarshalled services:");
+            servicesUnmarshal.displayServices(); // Constructed objects aren't initializing...getServiceCode
             initialized = true;
-            System.out.println("Number of services initialized: " + metaData.countServices());
 
         } catch(Exception e) {
-            System.out.println("Error: META_DATA_PATH failed to load");
+            System.out.println("Error: SERVICES_PATH failed to load");
             e.printStackTrace();
         }
     }
+
 
     /**
      * Save state of database.
@@ -52,16 +55,30 @@ public class ProviderDatabase {
      * change.
      */
     public void save(){
-
+        if(initialized){
+            try{
+                File metaDataFile = new File(SERVICES_PATH);
+                Marshaller m = JAXBContext.newInstance(Service.class).createMarshaller();
+                m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+                m.marshal(services, metaDataFile);
+                m.marshal(services, System.out);
+            }
+            catch (Exception e){
+                System.out.println("Error: ProviderServiceMetaData failed to save!");
+                e.printStackTrace();
+            }
+        }
     }
+
 
     /**
      * Will return a service corresponding to a service
      * id.
      *
-     * @param id
+     * //@param id
      * @return service
      */
+    /*
     public ProviderService getServiceFromID(String id){
 
         ProviderService service = null;
@@ -72,11 +89,17 @@ public class ProviderDatabase {
         * checking each service ID. When found, return
         * matched element.
         */
+            /*
+            int numServices = service.countServices();
+            for(int i=0; i < numServices; ++i){
+                // Go through and check if the ProviderType matches.
+                // If it does, add it to matchedServices.
+
+                }
             return service;
         }
-
         return service;
-    }
+    }*/
 
     /**
      * Method will return a list of services accessible
@@ -86,14 +109,23 @@ public class ProviderDatabase {
      * @param  id
      * @return ArrayList
      */
+    /*
     public ArrayList<ProviderService> getServicesByProviderType(String id){
+        ArrayList<ProviderService> matchedServices = null;
+        if(initialized && id != null){
+            int numServices = service.countServices();
+            for(int i=0; i < numServices; ++i){
+                // Go through and check if the ProviderType matches.
+                // If it does, add it to matchedServices.
+            }
+        }
+        return matchedServices;
 
-        return null;
     }
-
+    */
 
     /**
-     * Check database for @param and ensure there's
+     * Check profile database for @param and ensure there's
      * an entry for the provider.
      *
      * @param providerID
@@ -101,14 +133,27 @@ public class ProviderDatabase {
      */
     public boolean isProvider(String providerID){return false;}
 
+
     /**
      * Check database for @param and ensure there's
      * an attribute that matches @attribute.
      *
-     * @param serviceID
-     * @return boolean (yes/no)
+     * //@param serviceID
+     * //@return boolean (yes/no)
      */
-    public boolean isService(String serviceID){ return false;}
+    /*
+    public boolean isService(String serviceID){
+        if(initialized && serviceID != null){
+            //getService returns object. If returns null, service
+            //doesn't exist.
+            Service found = service.getService(serviceID);
+            if(found != null){
+                return true;
+            }
+        }
+        return false;
+    }
+    */
 
 
     /**
@@ -131,6 +176,7 @@ public class ProviderDatabase {
      */
     public ProviderService getService(String serviceID){
 
+
         ProviderService matchedService = null;
         return matchedService;
     }
@@ -150,6 +196,5 @@ public class ProviderDatabase {
 
         ProviderDatabase db = new ProviderDatabase();
         db.initialize();
-
     }
 }

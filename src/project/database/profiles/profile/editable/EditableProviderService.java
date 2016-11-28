@@ -1,7 +1,6 @@
 package project.database.profiles.profile.editable;
 
 import project.database.profiles.profile.Date;
-import project.database.profiles.profile.ImmutableType;
 import project.database.profiles.profile.ProviderService;
 import project.database.profiles.profile.Time;
 
@@ -27,6 +26,8 @@ public class EditableProviderService implements EditableType {
     private EditableTime timeReceived;
     @XmlElement(name = "comments")
     private String comments;
+    @XmlElement(name="fee")
+    double fee;
 
     public EditableProviderService() {
         dateOfService = null;
@@ -36,6 +37,7 @@ public class EditableProviderService implements EditableType {
         memberID = null;
         serviceCode = null;
         comments = null;
+        fee = 0;
     }
 
     public EditableProviderService(ProviderService providerService) {
@@ -46,6 +48,7 @@ public class EditableProviderService implements EditableType {
         memberID = providerService.getMemberID();
         serviceCode = providerService.getServiceCode();
         comments = providerService.getComments();
+        fee = providerService.getFee();
     }
 
     public void setDateOfService(EditableDate dateOfService) { this.dateOfService = dateOfService; }
@@ -77,11 +80,15 @@ public class EditableProviderService implements EditableType {
 
     public String getComments() { return comments; }
 
+    public Double getFee() {
+        return fee;
+    }
+
     @Override
     public ProviderService getImmutableType() {
         return new ProviderService(new Date(dateOfService.getMonth(), dateOfService.getDay(), dateOfService.getYear()),
                 new Date(dateReceived.getMonth(), dateReceived.getDay(), dateReceived.getYear()),
                 new Time(timeReceived.getHours(), timeReceived.getMinutes(), timeReceived.getSeconds()),
-                memberName, memberID, serviceCode, comments);
+                memberName, memberID, serviceCode, comments, fee);
     }
 }

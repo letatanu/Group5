@@ -1,7 +1,6 @@
 package project.database.profiles.profile;
 
 import project.database.profiles.profile.editable.EditableProvider;
-import project.database.profiles.profile.editable.EditableType;
 
 import java.util.ArrayList;
 import java.util.List;

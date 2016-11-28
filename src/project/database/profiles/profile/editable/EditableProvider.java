@@ -1,6 +1,5 @@
 package project.database.profiles.profile.editable;
 
-import project.database.profiles.profile.Address;
 import project.database.profiles.profile.Provider;
 import project.database.profiles.profile.ProviderService;
 
