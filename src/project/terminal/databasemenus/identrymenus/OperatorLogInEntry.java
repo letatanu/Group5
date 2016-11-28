@@ -10,7 +10,7 @@ import project.terminal.navmenus.ProviderNavMenu;
  * Created by Anders on 11/24/2016.
  * Handles the log in of providers or managers (operators)
  * to the ChocAn DPS
- * Should be the first menu a user encounters when
+ * Shall be the first menu a user encounters when
  * starting up the system.
  */
 public class OperatorLogInEntry extends ProfileIDEntryMenu {
