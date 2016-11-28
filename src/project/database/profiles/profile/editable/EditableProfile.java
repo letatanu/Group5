@@ -47,4 +47,6 @@ public abstract class EditableProfile implements EditableType {
 
     @XmlTransient
     public String getID() { return id; }
+
+    public String getName() { return name; }
  }

@@ -230,4 +230,31 @@ public class ProfilesDatabase {
         else
             return false;
     }
+
+    public boolean addService(String providerID, String memberID, EditableProviderService editableProviderService) {
+        try {
+            EditableProvider provider = getProvider(providerID).getEditableType();
+
+            provider.getServicesProvided().add(editableProviderService);
+
+            updateProfile(provider.getImmutableType());
+
+            EditableMember member = getMember(memberID).getEditableType();
+
+            EditableMemberService editableMemberService = new EditableMemberService();
+            editableMemberService.setDate(editableProviderService.getDateOfService());
+            editableMemberService.setProviderName(provider.getName());
+            editableMemberService.setServiceName("NO SERVICE NAMES");
+
+            member.getServicesReceived().add(editableMemberService);
+
+            updateProfile(member.getImmutableType());
+
+            return true;
+
+        } catch (Exception e) {
+
+            return false;
+        }
+    }
 }
