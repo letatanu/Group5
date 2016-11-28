@@ -1,12 +1,8 @@
 package project;
 
 import project.database.profiles.ProfilesDatabase;
-import project.database.profiles.profile.Member;
-import project.terminal.databasemenus.ProfileEditMenu;
-import project.terminal.databasemenus.ProfileRemovalMenu;
-import project.terminal.databasemenus.ProfileEntryMenu;
+import project.terminal.databasemenus.identrymenus.OperatorLogInEntry;
 import project.terminal.navmenus.ManagerNavMenu;
-import project.terminal.navmenus.ProfileModifyNavMenu;
 import project.terminal.navmenus.ProviderNavMenu;
 
 public final class Main {
@@ -26,10 +22,12 @@ public final class Main {
 
         */
 
+        String id = "aaaa";
         ProfilesDatabase p = new ProfilesDatabase();
         ManagerNavMenu c = new ManagerNavMenu(p);
 
         c.runMenu();
+
 
         /*ProfilesDatabase p = new ProfilesDatabase();
 
