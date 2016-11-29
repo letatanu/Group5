@@ -143,7 +143,6 @@ public class ProviderDatabase {
      * Utility to display data stored in database.
      */
     public void displayAllServices(){
-        System.out.println("Displaying all data:");
         data.displayServices();
     }
 
@@ -163,7 +162,11 @@ public class ProviderDatabase {
         ProviderDatabase db = new ProviderDatabase();
         db.initialize();
 
+        System.out.println("ProviderDatabase->main()->displayAllServices:\n");
         db.displayAllServices();
+
+
+        
         // Search for valid service code
         /*
         validService = db.isService(validServiceCode);

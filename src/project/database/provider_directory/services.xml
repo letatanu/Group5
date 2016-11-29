@@ -2,7 +2,7 @@
 <services name="provider_services_list">
     <service>
         <serviceName>Identify the symptoms.</serviceName>
-        <serviceDescription>Not all researchers in the field of psychology perceive chocolate addiction as a "true addiction",[1]. However, some researchers believe that the release of endorphins brought about by consuming chocolate creates a physical dependency to obtain that mood high again and again, thereby suggesting it is possible to be addicted to chocolate.[2] Any way you look at it, your addiction to chocolate is definitely real and very hard to resist if you have become accustomed to consuming it.</serviceDescription>
+        <serviceDescription>Not all researchers in the field of psychology perceive chocolate addiction as a "true addiction". However, some researchers believe that the release of endorphins brought about by consuming chocolate creates a physical dependency to obtain that mood high again and again, thereby suggesting it is possible to be addicted to chocolate. Any way you look at it, your addiction to chocolate is definitely real and very hard to resist if you have become accustomed to consuming it.</serviceDescription>
         <serviceCode>000000</serviceCode>
         <fee>42.00</fee>
         <authorizedProviders>

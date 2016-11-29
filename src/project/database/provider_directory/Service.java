@@ -107,7 +107,8 @@ public class Service {
             }
         }
         System.out.println("Service Code: "+ serviceCode);
-        System.out.println("Fee: " + fee);
+        System.out.println("Fee: " + "$" + fee);
+        System.out.println("___________________________________________________"); // here's a band-aid
     }
 
     /**
