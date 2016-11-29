@@ -1,7 +1,7 @@
 package project.database.profiles;
 
 import project.database.profiles.profile.*;
-import project.database.provider_directory.Provider;
+import project.database.profiles.profile.Provider;
 
 import javax.xml.bind.annotation.*;
 import java.util.List;

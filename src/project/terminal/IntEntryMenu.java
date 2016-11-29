@@ -60,7 +60,7 @@ public class IntEntryMenu extends SingleLineEntryMenu<Integer> {
     /**
      * Generates a responseCode based on the settings
      *      0: Valid entry
-     *     -1: Invalid Input
+     *     -1.xml: Invalid Input
      *     -2: Less than minimum
      *     -3: Greater than max
      *

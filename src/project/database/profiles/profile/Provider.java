@@ -1,8 +1,6 @@
-package project.database.provider_directory;
+package project.database.profiles.profile;
 
-import project.database.profiles.profile.Address;
-import project.database.profiles.profile.Profile;
-import project.database.profiles.profile.ProviderService;
+import project.database.provider_directory.ProviderService;
 import project.database.profiles.profile.editable.EditableProvider;
 
 import java.util.ArrayList;
@@ -11,6 +9,7 @@ import java.util.List;
 /**
  * Created by ahunger on 11/20/2016.
  */
+
 public final class Provider extends Profile {
 
     private final ArrayList<ProviderService> servicesProvided;

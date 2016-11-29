@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<service id="2">
+    <title>Hello</title>
+    <description>Saying Hello</description>
+    <fee>123.0</fee>
+</service>

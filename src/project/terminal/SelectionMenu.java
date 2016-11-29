@@ -76,7 +76,7 @@ public class SelectionMenu extends IntEntryMenu {
     /**
      * Generates a responseCode based on the settings
      *      0: Valid Entry
-     *     -1: Invalid input or outside the range of selections
+     *     -1.xml: Invalid input or outside the range of selections
      *
      * @return responseCode
      */

@@ -2,7 +2,7 @@ package project.database.profiles;
 
 import project.database.profiles.profile.Member;
 import project.database.profiles.profile.Profile;
-import project.database.provider_directory.Provider;
+import project.database.profiles.profile.Provider;
 import project.database.profiles.profile.editable.*;
 
 import javax.xml.bind.JAXBContext;

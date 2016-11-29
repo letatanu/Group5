@@ -1,41 +1,41 @@
-package project.database.services;
+package project.database.profiles.profile;
 
+import project.database.profiles.profile.ImmutableType;
+
+import project.database.profiles.profile.editable.EditableService;
 import javax.xml.bind.annotation.*;
 
 /**
  * Created by WillLe on 11/26/16.
  */
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name="service")
-public class Service {
-    @XmlElement(name = "service_id")
+//@XmlAccessorType(XmlAccessType.FIELD)
+//@XmlRootElement(name="service")
+public final class Service implements ImmutableType {
+   // @XmlAttribute(name = "id")
     protected String id;
 
-    @XmlElement(name = "title")
+   // @XmlElement(name = "title")
     protected String title;
-    @XmlElement(name = "description")
+
+    //@XmlElement(name = "description")
     protected String des;
 
-    @XmlElement(name = "providerID")
-    protected String providerID;
 
-    @XmlElement(name = "fee")
-    protected String fee;
+  //  @XmlElement(name = "fee")
+    protected Double fee;
     Service()
     {
         id = null;
         des = null;
-        providerID = null;
         fee = null;
         title = null;
     }
 
-    Service(String id, String title, String des, String providerID, double fee)
+    public Service(String id, String title, String des, double fee)
     {
         this.id = id;
         this.des = des;
-        this.providerID = providerID;
-        this.fee = null;
+        this.fee = fee;
         this.title = title;
     }
 
@@ -44,16 +44,13 @@ public class Service {
     }
 
     public double getFee() {
-        return Double.parseDouble(fee);
+        return fee;
     }
 
     public String getDes() {
         return des;
     }
 
-    public String getProviderID() {
-        return providerID;
-    }
 
     public String getTitle() {
         return title;
@@ -64,26 +61,25 @@ public class Service {
     }
 
     public void setFee(double fee) {
-        this.fee = Double.toString(fee);
+        this.fee = fee;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setProviderID(String providerID) {
-        providerID = providerID;
-    }
 
     public void setTitle(String title) {
         this.title = title;
     }
-
+/*
     public void print()
     {
         System.out.println("The service " + this.title + " :");
         System.out.println(des);
-        System.out.println();
-    }
+        System.out.println("------------------");
+    }*/
+    @Override
+    public EditableService getEditableType() { return new EditableService(this); }
 }
 

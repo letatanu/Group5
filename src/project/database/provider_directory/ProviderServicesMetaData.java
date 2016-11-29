@@ -1,17 +1,13 @@
 package project.database.provider_directory;
 
-import project.database.profiles.profile.ProviderService;
-
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;
-
-
 
 /**
  * This class handles the operations on the
  * meta-data (xml file) for provider services. It serves
  * as the interface between "ProviderDatabase"
- * object and "id.xml".
+ * object and "11_28_2016.xml".
  *
  * Note: only really need title, body, and fee
  * for the xml file.
@@ -22,66 +18,108 @@ import java.util.ArrayList;
 @XmlRootElement(name="ProviderServiceList")
 public class ProviderServicesMetaData {
 
-    @XmlElementWrapper(name="Date")
-    @XmlAttribute(name="name")
-    private String Date;
-    @XmlElementWrapper(name="Date")
-    @XmlElement(name="ProviderServiceID")
-    private ArrayList<String> serviceIDs;
+    @XmlElement(name="ProviderServicesDate")
+    protected ArrayList<ProviderServiceDates> ProviderServicesDates;
 
-
-
-    /*
-    @XmlElementWrapper(name="providerAccess")
-    @XmlAttribute(name= "provider")
-    */
-    //Array<int> providerAccess;
-
-    /**
-     * Functionality includes editing a service
-     * that already exists in the database.
-     *
-     * @return modifiedService
-     */
-    public ProviderService editService(){
-        /*
-        Prompt user for input (service code).
-        Search database, return/catch service that
-        needs to be modified, or return fail
-        if it doesn't exist.Modify the service. Once
-        user is satisfied, add the modified service back
-        into the list.
-         */
-
-        return null;
+    //getter
+    @XmlTransient
+    public ArrayList<ProviderServiceDates> getProviderServicesDates() {
+        return ProviderServicesDates;
     }
 
-    /**
-     * Returns a corresponding service that matches
-     * the service code passed in.
-     *
-      // service id to be searched for
+    //setter
 
-     */
-    public boolean isProviderService(String providerServiceID){
-        if(!serviceIDs.isEmpty() && providerServiceID != null){
-            for(int i=0; i <serviceIDs.size(); ++i){
-                if(serviceIDs.get(i).equals(providerServiceID)){
-                    //System.out.println("Found match in database.");
-                    return true;
-                }
-            }
+    public ProviderServicesMetaData()
+    {
+        ProviderServicesDates = new ArrayList<>();
+    }
+    public void setProviderServicesDates(ArrayList<ProviderServiceDates> providerServicesDates) {
+        ProviderServicesDates = providerServicesDates;
+    }
+
+    //If add successfully, return -1, else return the index of providerServiceDate in ProviderServicesDates
+    private int addProviderServiceDate(ProviderServiceDates providerServiceDate)
+    {
+        int index = indexFromDate(providerServiceDate.getId());
+        if(index == -1)
+        {
+            ProviderServicesDates.add(providerServiceDate);
+        }
+        return index;
+    }
+
+    public boolean removeProviderServiceDate(ProviderServiceDates providerServiceDate)
+    {
+        int index = indexFromDate(providerServiceDate.getId());
+        if(index != -1)
+        {
+            ProviderServicesDates.remove(index);
+            return true;
         }
         return false;
     }
+    //Functions in ProviderServicesMetaData
 
-    /**
-     * Returns the number of services
-     * that are present in ArrayList
-     * "services".
-     *
-     * @return services.size()
-     */
+    public boolean addProviderService(ProviderService providerService, String Date)
+    {
+
+        ProviderServiceDates tmp = new ProviderServiceDates();
+        tmp.setId(Date);
+        int index = addProviderServiceDate(tmp);
+        if(index == -1)
+        {
+            /*
+            DateFormat dateFormat = new SimpleDateFormat("MM_dd_YYYY");
+            Date date = new Date();
+            System.out.println(dateFormat.format(date)); //test
+            //create new ProviderServiceDate
+            */
+            return tmp.addProviderServiceID(providerService.getId());
+        }
+        System.out.println(index);
+        return ProviderServicesDates.get(index).addProviderServiceID(providerService.getId());
+
+    }
+
+
+    //remove serviceID from metadata
+    public boolean removeService(String id, String Date)
+    {
+        int index = indexFromDate(Date);
+        if(index == -1 || id == null || Date == null)
+            return false;
+
+        return ProviderServicesDates.get(index).removeProviderServiceID(id);
+
+    }
+
+    public ProviderServiceDates getProviderServicesOnDate(String date)
+    {
+        ProviderServiceDates result = null ;
+        for(int i=0; i<ProviderServicesDates.size(); i++)
+        {
+            String d = ProviderServicesDates.get(i).getId();
+            if(d.equals(date))
+            {
+                return ProviderServicesDates.get(i);
+            }
+        }
+        return result;
+    }
+
+    //This function returns true (!= -1) and false (=-1). If it returns true, the return value is the index also.
+    public int indexFromDate(String date)
+    {
+        for(int i=0;i<ProviderServicesDates.size();i++)
+        {
+            if(ProviderServicesDates.get(i).getId().equals(date))
+                return i;
+        }
+        return -1;
+    }
+
+
+
 }
 
 

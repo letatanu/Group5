@@ -1,7 +1,7 @@
 package project.database.profiles.profile.editable;
 
-import project.database.provider_directory.Provider;
-import project.database.profiles.profile.ProviderService;
+import project.database.profiles.profile.Provider;
+import project.database.provider_directory.ProviderService;
 
 import javax.xml.bind.annotation.*;
 import java.util.ArrayList;

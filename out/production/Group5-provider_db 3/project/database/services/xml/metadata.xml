@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<service_list name="Service_list">
-    <service >
-    </service>
+<service_list>
+    <service_id>2</service_id>
+    <service_id>3</service_id>
+    <service_id>4</service_id>
 </service_list>

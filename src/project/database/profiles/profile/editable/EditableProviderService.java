@@ -1,90 +1,176 @@
 package project.database.profiles.profile.editable;
 
 //import project.database.profiles.profile.Date;
-import project.database.profiles.profile.ProviderService;
-import project.database.profiles.profile.Time;
+import project.database.provider_directory.ProviderService;
 
 import javax.xml.bind.annotation.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 /**
  * Created by Ashton on 11/21/2016.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
+@XmlRootElement(name="ProviderService")
 public class EditableProviderService implements EditableType {
-   /* @XmlAttribute(name = "member_name")
-    private String memberName;*/
-    @XmlAttribute(name="ProviderServiceID")
-   private String providerServiceID;
+    @XmlAttribute(name="id")
+    private String id;
 
-    @XmlAttribute(name="memberID")
-    private String memberID;
+    @XmlElement(name="ProviderID")
+    private String ProviderID;
 
-    @XmlAttribute(name="title")
-    private String title;
-
-    @XmlAttribute(name="body")
-    private String body;
-
-    @XmlElement(name="ServiceID")
+    @XmlElement(name="serviceID")
     private String serviceID;
 
-    @XmlAttribute(name="dateOfService")
+    @XmlElement(name="memberID")
+    private String memberID;
+
+    @XmlElement(name="title")
+    private String title;
+
+    @XmlElement(name="body")
+    private String body;
+
+    @XmlElement(name="dateOfService")
     private String dateOfService;
 
-    @XmlAttribute(name="dateReceived")
+    @XmlElement(name="dateReceived")
     private String dateReceived;
 
-    @XmlAttribute(name="timeReceived")
+    @XmlElement(name="timeReceived")
     private String timeReceived;
 
-    @XmlAttribute(name="comments")
+    @XmlElement(name="comments")
     private String comments;
 
-    @XmlAttribute(name="fee")
+    @XmlElement(name="fee")
     private Double fee;
 
     public EditableProviderService() {
-        providerServiceID = null;
+        id = null;
+        ProviderID = null;
+        serviceID = null;
+        memberID = null;
         title = null;
         body = null;
         dateOfService = null;
         dateReceived = null;
         timeReceived = null;
-       // memberName = null;
-        memberID = null;
-        serviceID = null;
         comments = null;
         fee = 0.0;
     }
 
     public EditableProviderService(ProviderService providerService) {
-        providerServiceID =
+        id = providerService.getId();
+        ProviderID = providerService.getProviderID();
+        serviceID = providerService.getServiceID();
+        memberID = providerService.getMemberID();
+        title = providerService.getTitle();
+        body = providerService.getBody();
         dateOfService = providerService.getDateOfService().toString();
         dateReceived = providerService.getDateReceived().toString();
         timeReceived = providerService.getTimeReceived().toString();
-        //memberName = providerService.getMemberName();
-        memberID = providerService.getMemberID();
-        serviceID = providerService.getServiceID();
         comments = providerService.getComments();
+        fee = providerService.getFee();
     }
 
-    public void setDateOfService(String dateOfService) { this.dateOfService = dateOfService; }
+    public EditableProviderService(String ProviderID, String serviceID, String memberID, String title, String body, String dateOfService, String dateReceived, String timeReceived, String comments, double fee)
+    {
+        this.ProviderID = ProviderID;
+        this.serviceID = serviceID;
+        this.memberID= memberID;
+        this.title = title;
+        this.body = body;
+        this.dateOfService = dateOfService;
+        this.dateReceived = dateReceived;
+        this.timeReceived = timeReceived;
+        this.comments = comments;
+        this.fee = fee;
+    }
 
-    public void setDateReceived(String dateReceived) { this.dateReceived = dateReceived; }
+    public EditableProviderService(String serviceID, String memberID, String title, String body, String comments, double fee)
+    {
+        this.ProviderID = ProviderID;
+        this.serviceID = serviceID;
+        this.memberID= memberID;
+        this.title = title;
+        this.body = body;
+        //get current date
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/YYYY");
+       // DateFormat time = new SimpleDateFormat(":mm:ss");
+        Date date = new Date();
+        String Date = dateFormat.format(date);
+        String Time = Long.toString(date.getTime());
+        this.dateOfService = Date;
+        this.dateReceived = Date;
+        long t2 = System.currentTimeMillis();
+        this.timeReceived = ((t2 / 1000 / 60 / 60)-8)%24 + ":" + (t2 / 1000 / 60) % 60 + ":" + (t2 / 1000) % 60;
+        this.comments = comments;
+        this.fee = fee;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public void setTimeReceived(String timeReceived) { this.timeReceived = timeReceived; }
+    public void setProviderID(String providerID) {
+        ProviderID = providerID;
+    }
 
-   // public void setMemberName(String memberName) { this.memberName = memberName; }
+    public void setServiceID(String serviceID) {
+        this.serviceID = serviceID;
+    }
 
-    public void setMemberID(String memberID) { this.memberID = memberID; }
+    public void setMemberID(String memberID) {
+        this.memberID = memberID;
+    }
 
-    public void setServiceCode(String serviceCode) { this.serviceID = serviceID; }
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
 
-    public void setComments(String comments) { this.comments = comments; }
+    public void setDateOfService(String dateOfService) {
+        this.dateOfService = dateOfService;
+    }
 
+    public void setDateReceived(String dateReceived) {
+        this.dateReceived = dateReceived;
+    }
+
+    public void setFee(Double fee) {
+        this.fee = fee;
+    }
+
+    public void setTimeReceived(String timeReceived) {
+        this.timeReceived = timeReceived;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    //getter
     @XmlTransient
 
-    public String getProviderServiceID() {return providerServiceID;}
+    public String getId() {
+        return id;
+    }
+
+    public String getProviderID() {
+        return ProviderID;
+    }
+
+    public String getServiceID() {
+        return serviceID;
+    }
+
+    public String getMemberID() {
+        return memberID;
+    }
 
     public String getTitle() {
         return title;
@@ -94,24 +180,25 @@ public class EditableProviderService implements EditableType {
         return body;
     }
 
-    public String getMemberID() { return memberID; }
+    public String getDateOfService() {
+        return dateOfService;
+    }
 
-    public String getServiceID() { return serviceID; }
+    public String getDateReceived() {
+        return dateReceived;
+    }
 
-    public String getDateOfService() { return dateOfService; }
-
-    public String getDateReceived() { return dateReceived; }
-
-    public String getTimeReceived() { return timeReceived; }
-
+    public String getTimeReceived() {
+        return timeReceived;
+    }
     public String getComments() { return comments; }
 
-    public void setFee(Double fee) {
-        this.fee = fee;
+    public Double getFee() {
+        return fee;
     }
 
     @Override
     public ProviderService getImmutableType() {
-        return new ProviderService(title,body, dateOfService, dateReceived,memberID,serviceID,comments,fee,timeReceived );
+        return new ProviderService(id, ProviderID, serviceID, memberID, title, body, dateOfService, dateReceived, timeReceived, comments, fee);
     }
 }

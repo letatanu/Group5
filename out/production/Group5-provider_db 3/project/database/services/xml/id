@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<service>
-    <service_id>0</service_id>
-    <title>name</title>
-    <description>What this service does</description>
-    <provider>12345</provider>
-    <fee>0</fee>
-</service>
