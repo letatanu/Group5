@@ -19,7 +19,6 @@ public class Services {
     // Constructors
     public Services() {
         serviceList = new ArrayList<Service>();
-
     }
 
     public Services(ArrayList<Service> services){
@@ -39,7 +38,7 @@ public class Services {
             if(!serviceList.isEmpty()){
                 for(int i = 0; i < serviceList.size(); ++i){
                     Service current = serviceList.get(i);
-                    current.displaySelf();
+                    current.display();
                 }
             }
             else
@@ -65,19 +64,28 @@ public class Services {
      * Returns a corresponding service that matches
      * the service code passed in.
      *
-     * @param serviceID // service id to be searched for
+     * @param serviceCode // service id to be searched for
      * @return
      */
-    public Service getService(String serviceID){
-        if(!serviceList.isEmpty() && serviceID != null){
+    public Service getService(String serviceCode){
+        if(!serviceList.isEmpty() && serviceCode != null){
             for(int i=0; i <serviceList.size(); ++i){
-                if((serviceList.get(i)).getServiceCode()==serviceID){
+                if((serviceList.get(i)).getServiceCode().equals(serviceCode)){
                     System.out.println("Found match in database.");
                     return serviceList.get(i);
                 }
             }
         }
         return null; // Didn't find match or bad @param.
+    }
+
+    public boolean isService(String serviceCode){
+        if(!serviceList.isEmpty() && serviceCode != null){
+            if(getService(serviceCode) != null){
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -88,6 +96,11 @@ public class Services {
      * @return services.size()
      */
     public int countServices(){
-        return serviceList.size();
+        try{
+            return serviceList.size();
+        }catch(Exception e){ // Edge cases: maxInt = 2,147,483,648.
+            e.printStackTrace();
+            return 0;
+        }
     }
 }

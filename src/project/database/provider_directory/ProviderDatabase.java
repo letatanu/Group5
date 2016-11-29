@@ -1,7 +1,5 @@
 package project.database.provider_directory;
 
-import project.database.profiles.profile.ProviderService;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
@@ -9,15 +7,15 @@ import java.io.File;
 
 /**
  * ProviderDatabase object to be used for
- * managing provider services.
+ * managing provider data.
  *
  * Created by Austin on 11/19/16.
  */
 public class ProviderDatabase {
 
-    private Services services;
+    private Services data;
     private boolean initialized = false;
-    // Only need a single file to work with, since provider services shouldn't change.
+    // Only need a single file to work with, since provider data shouldn't change.
     private static final String SERVICES_PATH = "src/project/database/provider_directory/services.xml";
     //private static final String PROVIDER_DIRECTORY_PATH = "src/project/database/provider_directory/";
 
@@ -31,28 +29,25 @@ public class ProviderDatabase {
      */
     public void initialize(){
         try {
-
-            services = new Services();
+            data = new Services();
             File servicesFile = new File(SERVICES_PATH);
             JAXBContext jaxbContext = JAXBContext.newInstance(Services.class);
             Unmarshaller um = jaxbContext.createUnmarshaller();
             Services servicesUnmarshal = ((Services)um.unmarshal(servicesFile));
-
-            System.out.println("initialize(), displaying unmarshalled services:");
-            servicesUnmarshal.displayServices(); // Constructed objects aren't initializing...getServiceCode
+            data = servicesUnmarshal;
             initialized = true;
-
-        } catch(Exception e) {
+        }catch(Exception e) {
             System.out.println("Error: SERVICES_PATH failed to load");
             e.printStackTrace();
         }
     }
 
-
     /**
      * Save state of database.
      * Note: this must be done after every state
      * change.
+     *
+     * Hasn't been tested or anything.
      */
     public void save(){
         if(initialized){
@@ -60,8 +55,8 @@ public class ProviderDatabase {
                 File metaDataFile = new File(SERVICES_PATH);
                 Marshaller m = JAXBContext.newInstance(Service.class).createMarshaller();
                 m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-                m.marshal(services, metaDataFile);
-                m.marshal(services, System.out);
+                m.marshal(data, metaDataFile);
+                m.marshal(data, System.out);
             }
             catch (Exception e){
                 System.out.println("Error: ProviderServiceMetaData failed to save!");
@@ -70,7 +65,6 @@ public class ProviderDatabase {
         }
     }
 
-
     /**
      * Will return a service corresponding to a service
      * id.
@@ -78,115 +72,80 @@ public class ProviderDatabase {
      * //@param id
      * @return service
      */
-    /*
-    public ProviderService getServiceFromID(String id){
-
-        ProviderService service = null;
-
-        if(!id.isEmpty() && id != null && initialized){
-
-       /* Search elements (ProviderServices) while
-        * checking each service ID. When found, return
-        * matched element.
-        */
-            /*
-            int numServices = service.countServices();
-            for(int i=0; i < numServices; ++i){
-                // Go through and check if the ProviderType matches.
-                // If it does, add it to matchedServices.
-
-                }
-            return service;
+    public Service getServiceFromServiceCode(String serviceCode){
+        if(!serviceCode.isEmpty() && initialized) {
+            return data.getService(serviceCode);
         }
-        return service;
-    }*/
+        return null;
+    }
 
     /**
-     * Method will return a list of services accessible
+     * Method will return a list of data accessible
      * from a given provider type, since some providers
-     * have access to services that others don't.
+     * have access to data that others don't.
      *
-     * @param  id
+     * @param  type
      * @return ArrayList
      */
-    /*
-    public ArrayList<ProviderService> getServicesByProviderType(String id){
-        ArrayList<ProviderService> matchedServices = null;
-        if(initialized && id != null){
-            int numServices = service.countServices();
-            for(int i=0; i < numServices; ++i){
+    // !!! This isn't working yet. !!!
+    public Services getServicesByProviderType(String type){
+        Services matchedServices = null;
+        if(initialized && type != null){
+            for(int i = 0; i < data.countServices(); ++i){
                 // Go through and check if the ProviderType matches.
                 // If it does, add it to matchedServices.
             }
         }
         return matchedServices;
-
     }
-    */
-
-    /**
-     * Check profile database for @param and ensure there's
-     * an entry for the provider.
-     *
-     * @param providerID
-     * @return boolean (yes/no)
-     */
-    public boolean isProvider(String providerID){return false;}
-
 
     /**
      * Check database for @param and ensure there's
      * an attribute that matches @attribute.
      *
-     * //@param serviceID
-     * //@return boolean (yes/no)
+     * @param serviceCode
+     * @return boolean (yes/no)
      */
-    /*
-    public boolean isService(String serviceID){
-        if(initialized && serviceID != null){
-            //getService returns object. If returns null, service
-            //doesn't exist.
-            Service found = service.getService(serviceID);
-            if(found != null){
+    public boolean isService(String serviceCode){
+        if(initialized && serviceCode != null){
+            if(data.isService(serviceCode)){
                 return true;
             }
         }
         return false;
     }
-    */
-
-
-    /**
-     * Returns the (final) service that was added to database.
-     *
-     * @param editableService
-     * @return
-     */
-    public ProviderService addService(ProviderService editableService){
-
-        return null;
-    }
-
 
     /**
      * Returns requested service from DB if it matches.
      *
-     * @param serviceID
+     * @param serviceCode
      * @return matching service.
      */
-    public ProviderService getService(String serviceID){
-
-
-        ProviderService matchedService = null;
-        return matchedService;
+    public Service getService(String serviceCode){
+        return data.getService(serviceCode);
     }
 
-
-    public boolean removeService(String serviceID){
-
+    /**
+     * (Not implemented)
+     * Remove service from the DB based on serviceCode.
+     * Remember: save()
+     *
+     * //@param serviceCode
+     * //@return
+     */
+    /*
+    public boolean removeService(String serviceCode){
         return false;
     }
+    */
 
+    /**
+     * Utility to display data stored in database.
+     */
+    public void displayAllServices(){
+        System.out.println("Displaying all data:");
+        data.displayServices();
+    }
 
     /**
      * Small test-runs for database. Remove before deployment.
@@ -194,7 +153,29 @@ public class ProviderDatabase {
      */
     public static void main(String[] args) {
 
+        Service matchedService;
+        boolean validService = false;
+        String validServiceCode = "000000";
+        String invalidServiceCode = "x";
+
+        // Initialize db
         ProviderDatabase db = new ProviderDatabase();
         db.initialize();
+
+        // Search for valid service code
+        validService = db.isService(validServiceCode);
+        System.out.println("Service " + validServiceCode + " is " + validService);
+        matchedService = db.getService(validServiceCode);
+        if(matchedService != null){
+            matchedService.display();
+        }
+
+        // Search for invalid service code
+        validService = db.isService(invalidServiceCode);
+        System.out.println("Service " + invalidServiceCode + " is " + validService);
+        matchedService = db.getService(invalidServiceCode);
+        if(matchedService != null){
+            matchedService.display();
+        }
     }
 }
