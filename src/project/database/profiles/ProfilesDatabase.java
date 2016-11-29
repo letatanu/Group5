@@ -11,21 +11,27 @@ import javax.xml.bind.Unmarshaller;
 import java.io.File;
 
 /**
- * Created by ahunger on 10/25/2016.
+ * ProfilesDatabase contains manages all the profile filesystem
  */
 public class ProfilesDatabase {
 
+    //Paths
     private static final String META_DATA_PATH = "src/project/database/profiles/xml/metadata.xml";
     private static final String PROFILE_DATA_PATH = "src/project/database/profiles/xml/";
 
+    //Constants
     private static final int ID_SIZE = 9;
     private static final int MAX_ID = 999999999;
 
+    //Data members
     private int next_seed;
 
     private boolean initialized = false;
     private ProfilesMetaData metaData;
 
+    /**
+     * Initialize is required to use the database. The function reads the metadata.xml and instantiates the object
+     */
     public void initialize() {
         try {
             File metaDataFile = new File(META_DATA_PATH);
@@ -39,6 +45,9 @@ public class ProfilesDatabase {
         }
     }
 
+    /**
+     * Save is required
+     */
     public void save() {
         if (initialized) {
             try {

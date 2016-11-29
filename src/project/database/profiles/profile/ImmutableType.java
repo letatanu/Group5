@@ -3,8 +3,13 @@ package project.database.profiles.profile;
 import project.database.profiles.profile.editable.EditableType;
 
 /**
- * Created by ashton on 17/11/16.
+ * ImmutableType interface allows a general conversion between types
  */
 public interface ImmutableType {
+    /**
+     * Creates an EditableType of the data
+     *
+     * @return EditableType
+     */
     EditableType getEditableType();
 }

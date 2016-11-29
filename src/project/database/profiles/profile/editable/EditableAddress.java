@@ -7,10 +7,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 
 /**
- * Created by Ashton on 10/28/2016.
+ *  EditableAddress is the EditableType of Address, which can be changed and formats the XML.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 public class EditableAddress implements EditableType {
+
+    //Data Members
     @XmlAttribute(name="streetAddress")
     private String streetAddress;
 
@@ -23,6 +25,7 @@ public class EditableAddress implements EditableType {
     @XmlAttribute(name="zip")
     private String zip;
 
+    //Constructors
     public EditableAddress() {}
 
     public EditableAddress(Address address) {
@@ -32,6 +35,7 @@ public class EditableAddress implements EditableType {
         zip = address.getZip();
     }
 
+    //Setters
     public void setStreetAddress(String streetAddress) {
         this.streetAddress = streetAddress;
     }
