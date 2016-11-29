@@ -152,17 +152,20 @@ public class ProviderDatabase {
      *
      */
     public static void main(String[] args) {
-
+        /*
         Service matchedService;
         boolean validService = false;
         String validServiceCode = "000000";
         String invalidServiceCode = "x";
+        */
 
         // Initialize db
         ProviderDatabase db = new ProviderDatabase();
         db.initialize();
 
+        db.displayAllServices();
         // Search for valid service code
+        /*
         validService = db.isService(validServiceCode);
         System.out.println("Service " + validServiceCode + " is " + validService);
         matchedService = db.getService(validServiceCode);
@@ -177,5 +180,6 @@ public class ProviderDatabase {
         if(matchedService != null){
             matchedService.display();
         }
+        */
     }
 }

@@ -4,8 +4,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 /**
  * Created by Austin on 11/28/16.
@@ -16,20 +15,20 @@ import java.util.Set;
 public class Service {
 
     @XmlElement(name="serviceName")
-    String serviceName;
+    private String serviceName;
 
     @XmlElement(name="serviceDescription")
-    String serviceDescription;
+    private String serviceDescription;
 
     @XmlElement(name="serviceCode")
-    String serviceCode;
+    private String serviceCode;
 
     @XmlElement(name="fee")
-    Double fee;
+    private Double fee;
 
     // !!! This isn't working yet. !!!
-    @XmlElement(name="providedBy")
-    Set<Integer> authorizedProviders;
+    @XmlElement(name="authorizedProviders")
+    private AuthorizedProviders authorizedProviders;
 
     // Constructors
     public Service() {
@@ -37,17 +36,26 @@ public class Service {
         serviceDescription = null;
         serviceName = null;
         fee = 00.00;
-        authorizedProviders = null; // !!! This isn't working yet. !!!
+        //authorizedProviders = null; // !!! This isn't working yet. !!!
 
     }
-    public Service(String serviceCode, String serviceDescription, String comments, double fee, Set<Integer> providedBy) {
+
+    public Service(String serviceCode, String serviceDescription, String comments, double fee) {
         this.serviceCode = serviceCode;
         this.serviceDescription = serviceDescription;
         this.serviceName = comments;
         this.fee = fee;
-        this.authorizedProviders = new HashSet<Integer>(providedBy);
+        //this.authorizedProviders = new ArrayList<String>(providedBy);
     }
-
+    /*
+    public Service(String serviceCode, String serviceDescription, String comments, double fee, ArrayList<String> providedBy) {
+        this.serviceCode = serviceCode;
+        this.serviceDescription = serviceDescription;
+        this.serviceName = comments;
+        this.fee = fee;
+        //this.authorizedProviders = new ArrayList<String>(providedBy);
+    }
+    */
     // Getters
     public String getServiceCode() {
         return serviceCode;
@@ -61,9 +69,14 @@ public class Service {
     public double getFee() {
         return fee;
     }
-    public Set<Integer> getAuthorizedProviders(){
+    public AuthorizedProviders getAuthorizedProviders(){
         return authorizedProviders;
     }
+    /*
+    public ArrayList<String> getAuthorizedProviders(){
+        return authorizedProviders;
+    }
+    */
 
     // Setters
     public void setServiceCode(String serviceCode) {
@@ -78,16 +91,34 @@ public class Service {
     public void setFee(double fee) {
         this.fee = fee;
     }
-    public void setAuthorizedProviders(Set<Integer> providers){
-        this.authorizedProviders = new HashSet<Integer>(providers);
+    public void setAuthorizedProviders(AuthorizedProviders providers){
+        this.authorizedProviders = new AuthorizedProviders();
     }
 
-    // Helpers
+    // Helper, shouldn't actually be used in the program.
     public void display(){
         System.out.println("Service name: " + serviceName);
         System.out.println("Service description: " + serviceDescription);
-        System.out.println("Authorized Providers:" + authorizedProviders);
+        System.out.println("Authorized Providers:");
+        if(authorizedProviders != null){
+            ArrayList<String> providers = authorizedProviders.getProviders();
+            for(int i = 0; i < providers.size(); ++i){
+                System.out.println("    Authorized Provider Type: " + providers.get(i));
+            }
+        }
         System.out.println("Service Code: "+ serviceCode);
         System.out.println("Fee: " + fee);
+    }
+
+    /**
+     * Can be used as a helper function
+     * to display a service data in
+     * formatted way. Table?
+     * (not implemented)
+     *
+     */
+    public void formattedDisplay(){
+        // int FIXED_WIDTH = 80; // not used
+
     }
 }

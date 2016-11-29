@@ -5,37 +5,37 @@
         <serviceDescription>Not all researchers in the field of psychology perceive chocolate addiction as a "true addiction",[1]. However, some researchers believe that the release of endorphins brought about by consuming chocolate creates a physical dependency to obtain that mood high again and again, thereby suggesting it is possible to be addicted to chocolate.[2] Any way you look at it, your addiction to chocolate is definitely real and very hard to resist if you have become accustomed to consuming it.</serviceDescription>
         <serviceCode>000000</serviceCode>
         <fee>42.00</fee>
-        <providedBy>
-            <provider>0</provider>
-            <provider>1</provider>
-            <provider>2</provider>
-        </providedBy>
+        <authorizedProviders>
+            <provider>Sexy nurse</provider>
+            <provider>Sexy nurse with a lollipop</provider>
+            <provider>Sexy nurse covered in chocolate</provider>
+        </authorizedProviders>
     </service>
     <service>
         <serviceName>Identify why it is a problem in your life.</serviceName>
         <serviceDescription>If you think chocolate might be a problem, it is important to understand what challenges your chocolate addiction might be bringing into your life:</serviceDescription>
         <serviceCode>000001</serviceCode>
         <fee>42.00</fee>
-        <providedBy>
-            <provider>0</provider>
-        </providedBy>
+        <authorizedProviders>
+            <provider>Sexy nurse</provider>
+        </authorizedProviders>
     </service>
     <service>
         <serviceName>Identify the cause.</serviceName>
         <serviceDescription>There may be a number of possibilities that might be fueling your chocolate addiction or cravings.</serviceDescription>
         <serviceCode>000002</serviceCode>
         <fee>42.00</fee>
-        <providedBy>
-            <provider>0</provider>
-        </providedBy>
+        <authorizedProviders>
+            <provider>Sexy nurse</provider>
+        </authorizedProviders>
     </service>
     <service>
         <serviceName>Solve the root problem.</serviceName>
         <serviceDescription>Once you have identified the cause, tackle it in a healthy and self-compassionate way. Unless you're allergic to chocolate or your doctor has sworn you off it for medical reasons, you don't need to give up chocolate completely; simply minimize it.</serviceDescription>
         <serviceCode>000003</serviceCode>
         <fee>42.00</fee>
-        <providedBy>
-            <provider>0</provider>
-        </providedBy>
+        <authorizedProviders>
+            <provider>Not so sexy nurse</provider>
+        </authorizedProviders>
     </service>
 </services>
